@@ -5,6 +5,7 @@ INJECTED from /Users/user/Documents/xcode/mingli_ios/projects/TestProjects/SQLDe
 INJECTED from /Users/user/Documents/xcode/mingli_ios/projects/TestProjects/SQLDelightPerformanceTest/androidApp/src/main/AndroidManifest.xml:2:1-14:12
 INJECTED from /Users/user/Documents/xcode/mingli_ios/projects/TestProjects/SQLDelightPerformanceTest/androidApp/src/main/AndroidManifest.xml:2:1-14:12
 MERGED from [:shared] /Users/user/Documents/xcode/mingli_ios/projects/TestProjects/SQLDelightPerformanceTest/shared/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
+MERGED from [com.squareup.sqldelight:android-driver:1.4.4] /Users/user/.gradle/caches/transforms-2/files-2.1/2ddb4e47550c7738a21deb2581b04d33/android-driver-1.4.4/AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.android.material:material:1.2.1] /Users/user/.gradle/caches/transforms-2/files-2.1/ac7a1ac9d2fee76f1bf478ab26137e52/material-1.2.1/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.0.2] /Users/user/.gradle/caches/transforms-2/files-2.1/056bf5155344c06c9b20e97f5590d5a5/constraintlayout-2.0.2/AndroidManifest.xml:2:1-11:12
 MERGED from [androidx.appcompat:appcompat:1.2.0] /Users/user/.gradle/caches/transforms-2/files-2.1/6dedef56a76e33e9015375993b4643b2/appcompat-1.2.0/AndroidManifest.xml:17:1-24:12
@@ -24,6 +25,8 @@ MERGED from [androidx.customview:customview:1.0.0] /Users/user/.gradle/caches/tr
 MERGED from [androidx.loader:loader:1.0.0] /Users/user/.gradle/caches/transforms-2/files-2.1/146bacab5ba57ac214490d6d027c2689/loader-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.activity:activity:1.0.0] /Users/user/.gradle/caches/transforms-2/files-2.1/59004a105cf41c65f648d97499a1944b/activity-1.0.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.core:core:1.3.1] /Users/user/.gradle/caches/transforms-2/files-2.1/f781ccda65c2a82df2d91d3ece6fbdd4/core-1.3.1/AndroidManifest.xml:17:1-26:12
+MERGED from [androidx.sqlite:sqlite-framework:2.1.0] /Users/user/.gradle/caches/transforms-2/files-2.1/b9e6624ee8129313d35bafb2e5571364/sqlite-framework-2.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.sqlite:sqlite:2.1.0] /Users/user/.gradle/caches/transforms-2/files-2.1/383d7ef41f4f08ef22783ffce5b70c87/sqlite-2.1.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /Users/user/.gradle/caches/transforms-2/files-2.1/74d7de654a6c53e8e64a2fc801e96c0d/versionedparcelable-1.1.0/AndroidManifest.xml:17:1-27:12
 MERGED from [androidx.lifecycle:lifecycle-runtime:2.1.0] /Users/user/.gradle/caches/transforms-2/files-2.1/d33a9c9a32c3a16cdc343e97d76f41bd/lifecycle-runtime-2.1.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] /Users/user/.gradle/caches/transforms-2/files-2.1/ea6c8df0634fd87e012c19f5a136f7b7/lifecycle-viewmodel-2.1.0/AndroidManifest.xml:17:1-22:12
@@ -88,6 +91,8 @@ INJECTED from /Users/user/Documents/xcode/mingli_ios/projects/TestProjects/SQLDe
 INJECTED from /Users/user/Documents/xcode/mingli_ios/projects/TestProjects/SQLDelightPerformanceTest/androidApp/src/main/AndroidManifest.xml
 MERGED from [:shared] /Users/user/Documents/xcode/mingli_ios/projects/TestProjects/SQLDelightPerformanceTest/shared/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:shared] /Users/user/Documents/xcode/mingli_ios/projects/TestProjects/SQLDelightPerformanceTest/shared/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [com.squareup.sqldelight:android-driver:1.4.4] /Users/user/.gradle/caches/transforms-2/files-2.1/2ddb4e47550c7738a21deb2581b04d33/android-driver-1.4.4/AndroidManifest.xml:5:5-44
+MERGED from [com.squareup.sqldelight:android-driver:1.4.4] /Users/user/.gradle/caches/transforms-2/files-2.1/2ddb4e47550c7738a21deb2581b04d33/android-driver-1.4.4/AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.material:material:1.2.1] /Users/user/.gradle/caches/transforms-2/files-2.1/ac7a1ac9d2fee76f1bf478ab26137e52/material-1.2.1/AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.material:material:1.2.1] /Users/user/.gradle/caches/transforms-2/files-2.1/ac7a1ac9d2fee76f1bf478ab26137e52/material-1.2.1/AndroidManifest.xml:20:5-44
 MERGED from [androidx.constraintlayout:constraintlayout:2.0.2] /Users/user/.gradle/caches/transforms-2/files-2.1/056bf5155344c06c9b20e97f5590d5a5/constraintlayout-2.0.2/AndroidManifest.xml:5:5-7:41
@@ -126,6 +131,10 @@ MERGED from [androidx.activity:activity:1.0.0] /Users/user/.gradle/caches/transf
 MERGED from [androidx.activity:activity:1.0.0] /Users/user/.gradle/caches/transforms-2/files-2.1/59004a105cf41c65f648d97499a1944b/activity-1.0.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.core:core:1.3.1] /Users/user/.gradle/caches/transforms-2/files-2.1/f781ccda65c2a82df2d91d3ece6fbdd4/core-1.3.1/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.core:core:1.3.1] /Users/user/.gradle/caches/transforms-2/files-2.1/f781ccda65c2a82df2d91d3ece6fbdd4/core-1.3.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.sqlite:sqlite-framework:2.1.0] /Users/user/.gradle/caches/transforms-2/files-2.1/b9e6624ee8129313d35bafb2e5571364/sqlite-framework-2.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.sqlite:sqlite-framework:2.1.0] /Users/user/.gradle/caches/transforms-2/files-2.1/b9e6624ee8129313d35bafb2e5571364/sqlite-framework-2.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.sqlite:sqlite:2.1.0] /Users/user/.gradle/caches/transforms-2/files-2.1/383d7ef41f4f08ef22783ffce5b70c87/sqlite-2.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.sqlite:sqlite:2.1.0] /Users/user/.gradle/caches/transforms-2/files-2.1/383d7ef41f4f08ef22783ffce5b70c87/sqlite-2.1.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /Users/user/.gradle/caches/transforms-2/files-2.1/74d7de654a6c53e8e64a2fc801e96c0d/versionedparcelable-1.1.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /Users/user/.gradle/caches/transforms-2/files-2.1/74d7de654a6c53e8e64a2fc801e96c0d/versionedparcelable-1.1.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.lifecycle:lifecycle-runtime:2.1.0] /Users/user/.gradle/caches/transforms-2/files-2.1/d33a9c9a32c3a16cdc343e97d76f41bd/lifecycle-runtime-2.1.0/AndroidManifest.xml:20:5-44
