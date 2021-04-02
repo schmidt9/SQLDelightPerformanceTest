@@ -2,6 +2,6 @@ package com.example.db
 
 import com.squareup.sqldelight.db.SqlDriver
 
-expect class DriverFactory {
+expect class DriverFactory() {
     fun createDriver(): SqlDriver
 }
