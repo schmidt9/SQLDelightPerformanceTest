@@ -6,14 +6,6 @@ target 'iosApp' do
   use_frameworks!
 
   pod 'SQLCipher', '< 4.0'
-
-  target 'iosAppTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
-  target 'iosAppUITests' do
-    # Pods for testing
-  end
+  pod 'shared', :path => '../shared'
 
 end
