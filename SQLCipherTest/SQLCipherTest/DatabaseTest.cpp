@@ -113,6 +113,7 @@ namespace test {
                 project.created = sqlite3_column_int64(stmt, 2);
                 project.updateTime = sqlite3_column_int64(stmt, 3);
                 project.isActive = (sqlite3_column_int(stmt, 4) > 0);
+                result.push_back(project);
             }
             
             finalize(stmt);
