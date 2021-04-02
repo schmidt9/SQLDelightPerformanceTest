@@ -1,2 +1,0 @@
-com/example/sqldelightperformancetest/shared/BuildConfig.java
- com.example.sqldelightperformancetest.shared.BuildConfig
