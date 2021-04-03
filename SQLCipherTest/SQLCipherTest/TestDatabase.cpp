@@ -83,16 +83,22 @@ namespace test {
     }
     
     void
+    TestDatabase::clearProjectsTable()
+    {
+        std::string query = "DELETE FROM project";
+        exec(query);
+    }
+    
+    void
     TestDatabase::createProjects()
     {
+        clearProjectsTable();
+        
         // begin transaction
         
         std::string query = "BEGIN TRANSACTION";
         
-        if (auto stmt = prepare(query)) {
-            stepDone(stmt);
-            finalize(stmt);
-        } else {
+        if (!exec(query)) {
             return;
         }
         
@@ -116,11 +122,7 @@ namespace test {
         // commit
         
         query = "COMMIT";
-        
-        if (auto stmt = prepare(query)) {
-            stepDone(stmt);
-            finalize(stmt);
-        }
+        exec(query);
     }
     
     std::vector<Project>

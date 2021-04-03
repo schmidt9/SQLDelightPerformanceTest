@@ -45,6 +45,8 @@ namespace test {
         
         void finalize(sqlite3_stmt *stmt);
         
+        void clearProjectsTable();
+        
         void createTable();
         
         void printError();

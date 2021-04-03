@@ -13,7 +13,7 @@
 		CE40EACF26174D5D00D3359E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE40EACD26174D5D00D3359E /* Main.storyboard */; };
 		CE40EAD126174D5E00D3359E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE40EAD026174D5E00D3359E /* Assets.xcassets */; };
 		CE40EAD426174D5E00D3359E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE40EAD226174D5E00D3359E /* LaunchScreen.storyboard */; };
-		CEC6B3AB26184E1800E392EB /* TestDatabaseBridge.mm in Sources */ = {isa = PBXBuildFile; fileRef = CEC6B3AA26184E1800E392EB /* TestDatabaseBridge.mm */; };
+		CEC6B3AB26184E1800E392EB /* TDTestDatabaseBridge.mm in Sources */ = {isa = PBXBuildFile; fileRef = CEC6B3AA26184E1800E392EB /* TDTestDatabaseBridge.mm */; };
 		CEC6B4052618592600E392EB /* SQLCipherTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC6B4042618592600E392EB /* SQLCipherTest.framework */; };
 		CEC6B4062618592600E392EB /* SQLCipherTest.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CEC6B4042618592600E392EB /* SQLCipherTest.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
@@ -43,8 +43,8 @@
 		CE40EAD326174D5E00D3359E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE40EAD526174D5E00D3359E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CEC6B3A926184E1800E392EB /* iosApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iosApp-Bridging-Header.h"; sourceTree = "<group>"; };
-		CEC6B3AA26184E1800E392EB /* TestDatabaseBridge.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TestDatabaseBridge.mm; sourceTree = "<group>"; };
-		CEC6B3AD26184E4300E392EB /* TestDatabaseBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestDatabaseBridge.h; sourceTree = "<group>"; };
+		CEC6B3AA26184E1800E392EB /* TDTestDatabaseBridge.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TDTestDatabaseBridge.mm; sourceTree = "<group>"; };
+		CEC6B3AD26184E4300E392EB /* TDTestDatabaseBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TDTestDatabaseBridge.h; sourceTree = "<group>"; };
 		CEC6B4042618592600E392EB /* SQLCipherTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SQLCipherTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F07A842754FC65E79882C3D3 /* Pods-iosApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.release.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -98,8 +98,8 @@
 				CEC6B3A926184E1800E392EB /* iosApp-Bridging-Header.h */,
 				CE40EAD226174D5E00D3359E /* LaunchScreen.storyboard */,
 				CE40EACD26174D5D00D3359E /* Main.storyboard */,
-				CEC6B3AD26184E4300E392EB /* TestDatabaseBridge.h */,
-				CEC6B3AA26184E1800E392EB /* TestDatabaseBridge.mm */,
+				CEC6B3AD26184E4300E392EB /* TDTestDatabaseBridge.h */,
+				CEC6B3AA26184E1800E392EB /* TDTestDatabaseBridge.mm */,
 				CE40EACB26174D5D00D3359E /* ViewController.swift */,
 			);
 			path = iosApp;
@@ -248,7 +248,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CEC6B3AB26184E1800E392EB /* TestDatabaseBridge.mm in Sources */,
+				CEC6B3AB26184E1800E392EB /* TDTestDatabaseBridge.mm in Sources */,
 				CE40EACC26174D5D00D3359E /* ViewController.swift in Sources */,
 				CE40EAC826174D5D00D3359E /* AppDelegate.swift in Sources */,
 			);
