@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		0F1918061DB877C7980F3D3E /* libPods-SQLCipherTest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E75AE3F85F80DD77CAA0501 /* libPods-SQLCipherTest.a */; };
 		CE0AE43C261769C7003CFE57 /* SQLCipherTest.h in Headers */ = {isa = PBXBuildFile; fileRef = CE0AE43A261769C7003CFE57 /* SQLCipherTest.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CE0AE44E26176AF1003CFE57 /* DatabaseTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE0AE44C26176AF1003CFE57 /* DatabaseTest.cpp */; };
-		CE0AE44F26176AF1003CFE57 /* DatabaseTest.hpp in Headers */ = {isa = PBXBuildFile; fileRef = CE0AE44D26176AF1003CFE57 /* DatabaseTest.hpp */; };
+		CE0AE44E26176AF1003CFE57 /* TestDatabase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE0AE44C26176AF1003CFE57 /* TestDatabase.cpp */; };
+		CE0AE44F26176AF1003CFE57 /* TestDatabase.hpp in Headers */ = {isa = PBXBuildFile; fileRef = CE0AE44D26176AF1003CFE57 /* TestDatabase.hpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,8 +20,8 @@
 		CE0AE437261769C7003CFE57 /* SQLCipherTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SQLCipherTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE0AE43A261769C7003CFE57 /* SQLCipherTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQLCipherTest.h; sourceTree = "<group>"; };
 		CE0AE43B261769C7003CFE57 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CE0AE44C26176AF1003CFE57 /* DatabaseTest.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DatabaseTest.cpp; sourceTree = "<group>"; };
-		CE0AE44D26176AF1003CFE57 /* DatabaseTest.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = DatabaseTest.hpp; sourceTree = "<group>"; };
+		CE0AE44C26176AF1003CFE57 /* TestDatabase.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TestDatabase.cpp; sourceTree = "<group>"; };
+		CE0AE44D26176AF1003CFE57 /* TestDatabase.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TestDatabase.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,8 +77,8 @@
 			children = (
 				CE0AE43A261769C7003CFE57 /* SQLCipherTest.h */,
 				CE0AE43B261769C7003CFE57 /* Info.plist */,
-				CE0AE44C26176AF1003CFE57 /* DatabaseTest.cpp */,
-				CE0AE44D26176AF1003CFE57 /* DatabaseTest.hpp */,
+				CE0AE44C26176AF1003CFE57 /* TestDatabase.cpp */,
+				CE0AE44D26176AF1003CFE57 /* TestDatabase.hpp */,
 			);
 			path = SQLCipherTest;
 			sourceTree = "<group>";
@@ -91,7 +91,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE0AE43C261769C7003CFE57 /* SQLCipherTest.h in Headers */,
-				CE0AE44F26176AF1003CFE57 /* DatabaseTest.hpp in Headers */,
+				CE0AE44F26176AF1003CFE57 /* TestDatabase.hpp in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -188,7 +188,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE0AE44E26176AF1003CFE57 /* DatabaseTest.cpp in Sources */,
+				CE0AE44E26176AF1003CFE57 /* TestDatabase.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

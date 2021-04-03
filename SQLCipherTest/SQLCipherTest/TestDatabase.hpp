@@ -25,11 +25,11 @@ namespace test {
         
     };
     
-    class DatabaseTest {
+    class TestDatabase {
         
     public:
         
-        DatabaseTest(const std::string &databasePath);
+        TestDatabase(const std::string &databasePath);
         
     private:
         

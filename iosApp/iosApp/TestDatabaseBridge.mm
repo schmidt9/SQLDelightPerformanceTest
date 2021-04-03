@@ -7,7 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import "TestDatabaseBridge.h"
-#import "DatabaseTest.hpp"
+#import "TestDatabase.hpp"
 
 using namespace test;
 
@@ -15,12 +15,12 @@ using namespace test;
 
 + (void)createProjectsWithDatabasePath:(NSString *)databasePath
 {
-    DatabaseTest([databasePath UTF8String]).createProjects();
+    TestDatabase([databasePath UTF8String]).createProjects();
 }
 
 + (NSArray *)fetchProjectsWithDatabasePath:(NSString *)databasePath
 {
-    auto projects = DatabaseTest([databasePath UTF8String]).fetchProjects();
+    auto projects = TestDatabase([databasePath UTF8String]).fetchProjects();
     
     NSMutableArray *result = [NSMutableArray new];
     
