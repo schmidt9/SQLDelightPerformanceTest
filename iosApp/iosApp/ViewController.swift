@@ -14,10 +14,9 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         let dbPath = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first!.appendingPathComponent("databases").appendingPathComponent("test.db")
+        print("SQLDelight test database path", dbPath.path)
         
         print("\n=== Kotlin ===\n")
-        
-        print("SQLDelight test database path", dbPath.path)
 
         print("start createProjects()")
         var startDate = Date()
