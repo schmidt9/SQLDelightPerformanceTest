@@ -85,7 +85,20 @@ namespace test {
     void
     DatabaseTest::createProjects()
     {
-        std::string query = "INSERT INTO project (name) VALUES (?)";
+        // begin transaction
+        
+        std::string query = "BEGIN TRANSACTION";
+        
+        if (auto stmt = prepare(query)) {
+            stepDone(stmt);
+            finalize(stmt);
+        } else {
+            return;
+        }
+        
+        // insert
+        
+        query = "INSERT INTO project (name) VALUES (?)";
         
         if (auto stmt = prepare(query)) {
             
@@ -95,6 +108,17 @@ namespace test {
                 stepDone(stmt);
             }
             
+            finalize(stmt);
+        } else {
+            return;
+        }
+        
+        // commit
+        
+        query = "COMMIT";
+        
+        if (auto stmt = prepare(query)) {
+            stepDone(stmt);
             finalize(stmt);
         }
     }
