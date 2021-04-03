@@ -1,6 +1,6 @@
 # Description
 
-This project demonstrates performance difference regarding SQLite operations between Kotlin and C++ implementations.
+This project demonstrates performance difference regarding SQLite operations between Kotlin and C++ implementations on iOS.
 
 It contains Kotlin Multiplatform Project including [SQLDelight](https://github.com/cashapp/sqldelight) and an Swift XCode project with framework containing C++ SQLite wrapper (which also includes Objective C wrapper for Swift - C++ interop).
 
