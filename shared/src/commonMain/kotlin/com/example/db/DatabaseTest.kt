@@ -7,11 +7,13 @@ class DatabaseTest {
     val database = TestDatabase(DriverFactory().createDriver())
 
     fun createProjects() {
-        database.dataQueries.clearProjectsTable()
+        val queries = database.dataQueries
+
+        queries.clearProjectsTable()
 
         database.transaction {
             for (i in 0 until 100000) {
-                database.dataQueries.createProject("Project $i")
+                queries.createProject("Project $i")
             }
         }
     }
