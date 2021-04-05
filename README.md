@@ -8,7 +8,7 @@ Both Kotlin and C++ use the same [SQLChipher](https://github.com/sqlcipher/sqlci
 
 Performance test includes bulk inserts of 100 000 entities (using `INSERT`) and reading them into native structures afterwards (using `SELECT`)
 
-## Perfomance results using _iPhone SE_
+## Perfomance results using _iPhone SE_ with Debug configuration
 
 |  Op      | Kotlin | C++         |
 | -------- | -------| ----------- |
