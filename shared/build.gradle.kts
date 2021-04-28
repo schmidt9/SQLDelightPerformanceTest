@@ -20,7 +20,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation("com.squareup.sqldelight:runtime:1.4.4")
+                implementation("com.squareup.sqldelight:runtime:1.5.0")
             }
         }
         val commonTest by getting {
@@ -32,7 +32,7 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 implementation("com.google.android.material:material:1.2.1")
-                implementation("com.squareup.sqldelight:android-driver:1.4.4")
+                implementation("com.squareup.sqldelight:android-driver:1.5.0")
             }
         }
         val androidTest by getting {
@@ -43,7 +43,7 @@ kotlin {
         }
         val iosMain by getting {
             dependencies {
-                implementation("com.squareup.sqldelight:native-driver:1.4.4")
+                implementation("com.squareup.sqldelight:native-driver:1.5.0")
             }
         }
         val iosTest by getting
