@@ -40,6 +40,9 @@ gradle-app.setting
 # local project files
 lib/
 .idea/
+.idea/compiler.xml
+.idea/misc.xml
+.idea/codeStyles/Project.xml
 proto/compiler/protoc-artifacts
 proto/compiler/tests
 
