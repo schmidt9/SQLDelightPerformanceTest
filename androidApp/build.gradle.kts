@@ -11,7 +11,7 @@ dependencies {
 }
 
 android {
-    compileSdkVersion(29)
+    compileSdkVersion(34)
     defaultConfig {
         applicationId = "com.example.sqldelightperformancetest.androidApp"
         minSdkVersion(24)
