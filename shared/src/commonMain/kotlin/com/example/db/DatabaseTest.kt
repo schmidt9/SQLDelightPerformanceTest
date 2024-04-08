@@ -4,9 +4,9 @@ import comexampledb.Project
 
 class DatabaseTest {
 
-    val database = TestDatabase(DriverFactory().createDriver())
-
-    fun createProjects() {
+    fun createProjects(factory: DriverFactory) {
+        val driver = factory.createDriver()
+        val database = TestDatabase(driver)
         val queries = database.dataQueries
 
         queries.clearProjectsTable()
@@ -18,7 +18,10 @@ class DatabaseTest {
         }
     }
 
-    fun fetchProjects(): List<Project> {
+    fun fetchProjects(factory: DriverFactory): List<Project> {
+        val driver = factory.createDriver()
+        val database = TestDatabase(driver)
+
         return database.dataQueries.fetchProjects().executeAsList()
     }
 
