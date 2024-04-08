@@ -24,14 +24,13 @@ class ViewController: UIViewController {
 
         logString += "start createProjects() - INSERT\n"
         var startDate = Date()
-        let factory = DriverFactory()
-        DatabaseTest().createProjects(factory)
+        DatabaseTest().createProjects()
         var endDate = Date()
         logString += "createProjects() elapsed time \(endDate.timeIntervalSince(startDate))\n"
 
         logString += "start fetchProjects() - SELECT\n"
         startDate = Date()
-        let kotlinProjects = DatabaseTest().fetchProjects(factory)
+        let kotlinProjects = DatabaseTest().fetchProjects()
         endDate = Date()
         logString += "fetchProjects() elapsed time \(endDate.timeIntervalSince(startDate)), count: \(kotlinProjects.count)\n"
         

@@ -5,14 +5,8 @@ import app.cash.sqldelight.db.SqlDriver
 import app.cash.sqldelight.driver.android.AndroidSqliteDriver
 
 actual class DriverFactory actual constructor() {
-
-    private lateinit var context: Context
-
-    constructor(context: Context) : this() {
-        this.context = context
-    }
-
-    actual fun createDriver(): SqlDriver {
-        return AndroidSqliteDriver(TestDatabase.Schema, context, "test.db")
+    actual fun createDriver(context: Any?): SqlDriver {
+        val appContext = context as Context
+        return AndroidSqliteDriver(TestDatabase.Schema, appContext, "test.db")
     }
 }
