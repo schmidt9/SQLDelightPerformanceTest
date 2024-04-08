@@ -30,13 +30,13 @@ class ViewController: UIViewController {
 
         logString += "start createProjects() - INSERT\n"
         var startDate = Date()
-        DatabaseTest().createProjects()
+        DatabaseTest(context: nil).createProjects()
         var endDate = Date()
         logString += "createProjects() elapsed time \(endDate.timeIntervalSince(startDate))\n"
 
         logString += "start fetchProjects() - SELECT\n"
         startDate = Date()
-        let kotlinProjects = DatabaseTest().fetchProjects()
+        let kotlinProjects = DatabaseTest(context: nil).fetchProjects()
         endDate = Date()
         logString += "fetchProjects() elapsed time \(endDate.timeIntervalSince(startDate)), count: \(kotlinProjects.count)\n"
         
