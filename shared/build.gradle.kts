@@ -1,12 +1,12 @@
 plugins {
     kotlin("multiplatform")
     id("com.android.library")
-    id("com.squareup.sqldelight")
+    id("app.cash.sqldelight") version "2.0.2"
     id("org.jetbrains.kotlin.native.cocoapods")
 }
 
 kotlin {
-    android()
+    androidTarget()
 
     // Revert to just ios() when gradle plugin can properly resolve it
     // https://github.com/cashapp/sqldelight/issues/2044
@@ -20,7 +20,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation("com.squareup.sqldelight:runtime:1.5.0")
+                implementation("app.cash.sqldelight:runtime:2.0.2")
             }
         }
         val commonTest by getting {
@@ -32,10 +32,10 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 implementation("com.google.android.material:material:1.2.1")
-                implementation("com.squareup.sqldelight:android-driver:1.5.0")
+                implementation("app.cash.sqldelight:android-driver:2.0.2")
             }
         }
-        val androidTest by getting {
+        val androidUnitTest by getting {
             dependencies {
                 implementation(kotlin("test-junit"))
                 implementation("junit:junit:4.13")
@@ -43,17 +43,20 @@ kotlin {
         }
         val iosMain by getting {
             dependencies {
-                implementation("com.squareup.sqldelight:native-driver:1.5.0")
+                implementation("app.cash.sqldelight:native-driver:2.0.2")
             }
         }
         val iosTest by getting
     }
 
     sqldelight {
-        database("TestDatabase") {
-            packageName = "com.example.db"
+        databases {
+            create("TestDatabase") {
+                packageName.set("com.example.db")
+            }
         }
-        linkSqlite = false
+
+        linkSqlite.set(false)
     }
 
     // CocoaPods requires the podspec to have a version.
@@ -61,14 +64,17 @@ kotlin {
 
     cocoapods {
         // Configure fields required by CocoaPods.
-        val projectName = project.getRootProject().getName()
+        val projectName = project.rootProject.name
 
         license = "MIT"
         summary = projectName
         homepage = "https://google.com"
         ios.deploymentTarget = "9.0"
 
-        frameworkName = projectName
+        framework {
+            isStatic = true
+            baseName = projectName
+        }
     }
 }
 

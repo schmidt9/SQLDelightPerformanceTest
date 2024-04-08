@@ -9,44 +9,50 @@ import UIKit
 import SQLDelightPerformanceTest
 
 class ViewController: UIViewController {
-
+    
+    @IBOutlet var logTextView: UITextView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let dbPath = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first!.appendingPathComponent("databases").appendingPathComponent("test.db")
-        print("SQLDelight test database path", dbPath.path)
+        var logString = ""
         
-        print("\n=== Kotlin ===\n")
+        let dbPath = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first!.appendingPathComponent("databases").appendingPathComponent("test.db")
+        logString = "SQLDelight test database path \(dbPath.path)\n"
+        
+        logString += "\n=== Kotlin ===\n"
 
-        print("start createProjects()")
+        logString += "start createProjects() - INSERT\n"
         var startDate = Date()
         DatabaseTest().createProjects()
         var endDate = Date()
-        print("createProjects() elapsed time", endDate.timeIntervalSince(startDate))
+        logString += "createProjects() elapsed time \(endDate.timeIntervalSince(startDate))\n"
 
-        print("start fetchProjects()")
+        logString += "start fetchProjects() - SELECT\n"
         startDate = Date()
         let kotlinProjects = DatabaseTest().fetchProjects()
         endDate = Date()
-        print("fetchProjects() elapsed time \(endDate.timeIntervalSince(startDate)), count: \(kotlinProjects.count)")
+        logString += "fetchProjects() elapsed time \(endDate.timeIntervalSince(startDate)), count: \(kotlinProjects.count)\n"
         
-        print("\n=== CPP ===\n")
+        logString += "\n=== CPP ===\n"
         
-        print("start createProjects()")
+        logString += "start createProjects() - INSERT\n"
         startDate = Date()
         TDTestDatabaseBridge.createProjects(withDatabasePath: dbPath.path);
         endDate = Date()
-        print("createProjects() elapsed time", endDate.timeIntervalSince(startDate))
+        logString += "createProjects() elapsed time, \(endDate.timeIntervalSince(startDate))\n"
         
-        print("start fetchProjects()")
+        logString += "start fetchProjects() - SELECT\n"
         startDate = Date()
         let cppProjects = TDTestDatabaseBridge.fetchProjects(withDatabasePath: dbPath.path)!
         endDate = Date()
-        print("fetchProjects() elapsed time \(endDate.timeIntervalSince(startDate)), count: \(cppProjects.count)")
+        logString += "fetchProjects() elapsed time \(endDate.timeIntervalSince(startDate)), count: \(cppProjects.count)\n"
+        
+        print(logString)
+        
+        logTextView.text = logString
         
     }
-    
-
 
 }
 

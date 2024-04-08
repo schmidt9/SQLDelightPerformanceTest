@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B1F6467C0BDBCA4039BBB1D6 /* libPods-SQLCipherTest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AA4E3B815E7BCFBED3D3A11 /* libPods-SQLCipherTest.a */; };
+		45ED378517262142985701C9 /* libPods-SQLCipherTest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F5955744AB3750160AFE395 /* libPods-SQLCipherTest.a */; };
 		CE0AE43C261769C7003CFE57 /* SQLCipherTest.h in Headers */ = {isa = PBXBuildFile; fileRef = CE0AE43A261769C7003CFE57 /* SQLCipherTest.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CE0AE44E26176AF1003CFE57 /* TestDatabase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE0AE44C26176AF1003CFE57 /* TestDatabase.cpp */; };
 		CE0AE44F26176AF1003CFE57 /* TestDatabase.hpp in Headers */ = {isa = PBXBuildFile; fileRef = CE0AE44D26176AF1003CFE57 /* TestDatabase.hpp */; };
@@ -15,7 +15,7 @@
 
 /* Begin PBXFileReference section */
 		08CF36E60F1685B0CD25893A /* Pods-SQLCipherTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SQLCipherTest.release.xcconfig"; path = "Target Support Files/Pods-SQLCipherTest/Pods-SQLCipherTest.release.xcconfig"; sourceTree = "<group>"; };
-		6AA4E3B815E7BCFBED3D3A11 /* libPods-SQLCipherTest.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SQLCipherTest.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F5955744AB3750160AFE395 /* libPods-SQLCipherTest.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SQLCipherTest.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A06B9AFA9495139A85D8A178 /* Pods-SQLCipherTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SQLCipherTest.debug.xcconfig"; path = "Target Support Files/Pods-SQLCipherTest/Pods-SQLCipherTest.debug.xcconfig"; sourceTree = "<group>"; };
 		CE0AE437261769C7003CFE57 /* SQLCipherTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SQLCipherTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE0AE43A261769C7003CFE57 /* SQLCipherTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQLCipherTest.h; sourceTree = "<group>"; };
@@ -29,7 +29,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B1F6467C0BDBCA4039BBB1D6 /* libPods-SQLCipherTest.a in Frameworks */,
+				45ED378517262142985701C9 /* libPods-SQLCipherTest.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -39,7 +39,7 @@
 		7C13DE719BD57F8F357F2845 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				6AA4E3B815E7BCFBED3D3A11 /* libPods-SQLCipherTest.a */,
+				4F5955744AB3750160AFE395 /* libPods-SQLCipherTest.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
