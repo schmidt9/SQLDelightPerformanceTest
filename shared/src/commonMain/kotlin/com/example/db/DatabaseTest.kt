@@ -2,16 +2,16 @@ package com.example.db
 
 import comexampledb.Project
 
-class DatabaseTest {
+class DatabaseTest(context: Any? = null) {
 
-    constructor(context: Any? = null) {
+    private var database: TestDatabase
+
+    init {
         val factory = DriverFactory()
         val driver = factory.createDriver(context)
 
         database = TestDatabase(driver)
     }
-
-    private var database: TestDatabase
 
     fun createProjects() {
         val queries = database.dataQueries
