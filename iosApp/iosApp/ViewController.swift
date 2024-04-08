@@ -17,8 +17,14 @@ class ViewController: UIViewController {
         
         var logString = ""
         
+        #if DEBUG
+        logString += "Running Debug configuration\n\n"
+        #else
+        logString += "Running Release configuration\n\n"
+        #endif
+        
         let dbPath = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first!.appendingPathComponent("databases").appendingPathComponent("test.db")
-        logString = "SQLDelight test database path \(dbPath.path)\n"
+        logString += "SQLDelight test database path \(dbPath.path)\n"
         
         logString += "\n=== Kotlin ===\n"
 
