@@ -14,7 +14,7 @@ android {
     compileSdkVersion(34)
     defaultConfig {
         applicationId = "com.example.sqldelightperformancetest.androidApp"
-        minSdkVersion(21)
+        minSdkVersion(24)
         targetSdkVersion(29)
         versionCode = 1
         versionName = "1.0"
