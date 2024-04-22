@@ -1,9 +1,9 @@
 package com.example.sqldelightperformancetest.androidApp
 
 data class DatabaseProject(
-    var projectId: Int,
-    var name: String,
-    var created: Int,
-    var updateTime: Int,
-    var isActive: Boolean
+    var projectId: Int = 0,
+    var name: String = "",
+    var created: Int = 0,
+    var updateTime: Int = 0,
+    var isActive: Boolean = false
 )

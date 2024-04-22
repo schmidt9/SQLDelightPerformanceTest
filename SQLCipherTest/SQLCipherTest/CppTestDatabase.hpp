@@ -11,7 +11,7 @@ Java_com_example_sqldelightperformancetest_androidApp_CppTestDatabase_createProj
         JNIEnv *,
         jclass);
 
-JNIEXPORT void
+JNIEXPORT jobject
 Java_com_example_sqldelightperformancetest_androidApp_CppTestDatabase_fetchProjects(
         JNIEnv *,
         jclass);
