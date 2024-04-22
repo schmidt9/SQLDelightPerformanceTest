@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         builder.append("nativeCreateProjectsTime: ${nativeCreateProjectsTime / 1000.0}\n")
-        builder.append("nativeFetchProjectsTime: ${nativeFetchProjectsTime / 1000.0}\n")
+        builder.append("nativeFetchProjectsTime: ${nativeFetchProjectsTime / 1000.0}\n\n")
 
         builder.append("cppCreateProjectsTime: ${cppCreateProjectsTime / 1000.0}\n")
         builder.append("cppFetchProjectsTime: ${cppFetchProjectsTime / 1000.0}")

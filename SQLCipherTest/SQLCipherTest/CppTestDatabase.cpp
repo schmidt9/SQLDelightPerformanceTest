@@ -9,7 +9,7 @@ Java_com_example_sqldelightperformancetest_androidApp_CppTestDatabase_createProj
         JNIEnv *env,
         jclass cls)
 {
-    auto database = TestDatabase(""); // TODO: fix
+    auto database = TestDatabase("/data/data/com.example.sqldelightperformancetest.androidApp/databases/test.db");
 
     database.createProjects();
 }
@@ -19,7 +19,7 @@ Java_com_example_sqldelightperformancetest_androidApp_CppTestDatabase_fetchProje
         JNIEnv *env,
         jclass cls)
 {
-    auto database = TestDatabase(""); // TODO: fix
+    auto database = TestDatabase("/data/data/com.example.sqldelightperformancetest.androidApp/databases/test.db");
 
     database.fetchProjects();
 }
