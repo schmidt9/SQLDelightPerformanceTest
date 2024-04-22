@@ -14,14 +14,22 @@ android {
     compileSdkVersion(34)
     defaultConfig {
         applicationId = "com.example.sqldelightperformancetest.androidApp"
-        minSdkVersion(24)
+        minSdkVersion(21)
         targetSdkVersion(29)
         versionCode = 1
         versionName = "1.0"
+        ndk {
+            moduleName = "SQLCipherTest"
+        }
     }
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
+        }
+    }
+    externalNativeBuild {
+        ndkBuild {
+            path = File("../SQLCipherTest/Android.mk")
         }
     }
 }
