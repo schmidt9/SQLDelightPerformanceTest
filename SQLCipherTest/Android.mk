@@ -25,6 +25,7 @@ LOCAL_C_INCLUDES := \
 # included files
 LOCAL_SRC_FILES := \
         $(LOCAL_PATH)/../../../mingli/frameworks/sqlcipher/sqlite3.c \
+        $(LOCAL_PATH)/SQLCipherTest/CppTestDatabase.cpp \
         $(LOCAL_PATH)/SQLCipherTest/TestDatabase.cpp
 
 # static libraries

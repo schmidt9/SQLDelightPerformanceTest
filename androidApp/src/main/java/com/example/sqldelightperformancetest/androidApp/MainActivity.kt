@@ -18,24 +18,34 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val tv: TextView = findViewById(R.id.text_view)
-        tv.text = fetchTestResults()
+        findViewById<TextView>(R.id.text_view).text = fetchTestResults()
     }
 
     private fun fetchTestResults(): String {
         val databaseTest = DatabaseTest(this)
         val builder = StringBuilder()
 
-        val createProjectsTime = measureTimeMillis {
+        val nativeCreateProjectsTime = measureTimeMillis {
             databaseTest.createProjects()
         }
 
-        val fetchProjectsTime = measureTimeMillis {
+        val nativeFetchProjectsTime = measureTimeMillis {
             databaseTest.fetchProjects()
         }
 
-        builder.append("createProjectsTime: ${createProjectsTime / 1000.0}\n")
-        builder.append("fetchProjectsTime: ${fetchProjectsTime / 1000.0}")
+        val cppCreateProjectsTime = measureTimeMillis {
+            CppTestDatabase.createProjects()
+        }
+
+        val cppFetchProjectsTime = measureTimeMillis {
+            CppTestDatabase.fetchProjects()
+        }
+
+        builder.append("nativeCreateProjectsTime: ${nativeCreateProjectsTime / 1000.0}\n")
+        builder.append("nativeFetchProjectsTime: ${nativeFetchProjectsTime / 1000.0}\n")
+
+        builder.append("cppCreateProjectsTime: ${cppCreateProjectsTime / 1000.0}\n")
+        builder.append("cppFetchProjectsTime: ${cppFetchProjectsTime / 1000.0}")
 
         Log.d("Tests", "$builder")
 
