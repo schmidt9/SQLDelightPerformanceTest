@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         val cppFetchProjectsTime = measureTimeMillis {
-            CppTestDatabase.fetchProjects()
+            CppTestDatabase.fetchProjects() // TODO: convert to list of DatabaseProject
         }
 
         builder.append("nativeCreateProjectsTime: ${nativeCreateProjectsTime / 1000.0}\n")
