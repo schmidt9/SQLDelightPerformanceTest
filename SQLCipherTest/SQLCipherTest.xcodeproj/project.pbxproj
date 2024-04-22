@@ -11,6 +11,8 @@
 		CE0AE43C261769C7003CFE57 /* SQLCipherTest.h in Headers */ = {isa = PBXBuildFile; fileRef = CE0AE43A261769C7003CFE57 /* SQLCipherTest.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CE0AE44E26176AF1003CFE57 /* TestDatabase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE0AE44C26176AF1003CFE57 /* TestDatabase.cpp */; };
 		CE0AE44F26176AF1003CFE57 /* TestDatabase.hpp in Headers */ = {isa = PBXBuildFile; fileRef = CE0AE44D26176AF1003CFE57 /* TestDatabase.hpp */; };
+		CEC42AB12BD6727900A9CAC7 /* sqlite3.c in Sources */ = {isa = PBXBuildFile; fileRef = CEC42AAE2BD6727900A9CAC7 /* sqlite3.c */; };
+		CEC42AB22BD6727900A9CAC7 /* sqlite3.h in Headers */ = {isa = PBXBuildFile; fileRef = CEC42AAF2BD6727900A9CAC7 /* sqlite3.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		CE0AE43B261769C7003CFE57 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE0AE44C26176AF1003CFE57 /* TestDatabase.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TestDatabase.cpp; sourceTree = "<group>"; };
 		CE0AE44D26176AF1003CFE57 /* TestDatabase.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TestDatabase.hpp; sourceTree = "<group>"; };
+		CEC42AAE2BD6727900A9CAC7 /* sqlite3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sqlite3.c; sourceTree = "<group>"; };
+		CEC42AAF2BD6727900A9CAC7 /* sqlite3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sqlite3.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,12 +79,22 @@
 		CE0AE439261769C7003CFE57 /* SQLCipherTest */ = {
 			isa = PBXGroup;
 			children = (
+				CEC42AB02BD6727900A9CAC7 /* sqlite3 */,
 				CE0AE43A261769C7003CFE57 /* SQLCipherTest.h */,
 				CE0AE43B261769C7003CFE57 /* Info.plist */,
 				CE0AE44C26176AF1003CFE57 /* TestDatabase.cpp */,
 				CE0AE44D26176AF1003CFE57 /* TestDatabase.hpp */,
 			);
 			path = SQLCipherTest;
+			sourceTree = "<group>";
+		};
+		CEC42AB02BD6727900A9CAC7 /* sqlite3 */ = {
+			isa = PBXGroup;
+			children = (
+				CEC42AAE2BD6727900A9CAC7 /* sqlite3.c */,
+				CEC42AAF2BD6727900A9CAC7 /* sqlite3.h */,
+			);
+			path = sqlite3;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -91,6 +105,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE0AE43C261769C7003CFE57 /* SQLCipherTest.h in Headers */,
+				CEC42AB22BD6727900A9CAC7 /* sqlite3.h in Headers */,
 				CE0AE44F26176AF1003CFE57 /* TestDatabase.hpp in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -189,6 +204,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE0AE44E26176AF1003CFE57 /* TestDatabase.cpp in Sources */,
+				CEC42AB12BD6727900A9CAC7 /* sqlite3.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
