@@ -3,7 +3,7 @@ LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)
 
 # c flags
-LOCAL_CFLAGS := \
+APP_CFLAGS := \
         -DHAVE_MOBILE_OS \
         -DHAVE_LIBC_SYSTEM_PROPERTIES \
         -D_STLP_USE_MALLOC=1 \
@@ -45,11 +45,11 @@ LOCAL_LDLIBS := \
 OPENSSL := openssl-1.1.0f
 
 # frameworks paths
-OPENSSL_PATH := $(LOCAL_PATH)/../../../mingli/frameworks/$(OPENSSL)
+OPENSSL_PATH := $(LOCAL_PATH)/SQLCipherTest/$(OPENSSL)
 
 # ld flags
 LOCAL_LDFLAGS := \
-        -L$(OPENSSL_PATH)/$(TARGET_ARCH_ABI)/lib
+        -L$(LOCAL_PATH)/SQLCipherTest/libcrypto-1.1.1t
 
 include $(BUILD_SHARED_LIBRARY)
 
@@ -57,5 +57,5 @@ include $(BUILD_SHARED_LIBRARY)
 include $(CLEAR_VARS)
 LOCAL_MODULE := crypto
 LOCAL_EXPORT_C_INCLUDES := $(OPENSSL_PATH)/$(TARGET_ARCH_ABI)/include
-LOCAL_SRC_FILES := $(OPENSSL_PATH)/$(TARGET_ARCH_ABI)/lib/libcrypto.a
+LOCAL_SRC_FILES := $(LOCAL_PATH)/SQLCipherTest/libcrypto-1.1.1t/libcrypto.a
 include $(PREBUILT_STATIC_LIBRARY)
