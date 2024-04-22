@@ -20,11 +20,11 @@ LOCAL_MODULE := SQLCipherTest
 # included directories
 LOCAL_C_INCLUDES := \
         $(LOCAL_PATH)/SQLCipherTest \
-        $(LOCAL_PATH)/../../../mingli/frameworks/sqlcipher
+        $(LOCAL_PATH)/SQLCipherTest/sqlite3
 
 # included files
 LOCAL_SRC_FILES := \
-        $(LOCAL_PATH)/../../../mingli/frameworks/sqlcipher/sqlite3.c \
+        $(LOCAL_PATH)/SQLCipherTest/sqlite3/sqlite3.c \
         $(LOCAL_PATH)/SQLCipherTest/CppTestDatabase.cpp \
         $(LOCAL_PATH)/SQLCipherTest/TestDatabase.cpp
 
