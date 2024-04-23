@@ -49,7 +49,7 @@ OPENSSL_PATH := $(LOCAL_PATH)/SQLCipherTest/$(OPENSSL)
 
 # ld flags
 LOCAL_LDFLAGS := \
-        -L$(LOCAL_PATH)/SQLCipherTest/libcrypto-1.1.1t
+        -L$(OPENSSL_PATH)/$(TARGET_ARCH_ABI)/lib
 
 include $(BUILD_SHARED_LIBRARY)
 
@@ -57,5 +57,5 @@ include $(BUILD_SHARED_LIBRARY)
 include $(CLEAR_VARS)
 LOCAL_MODULE := crypto
 LOCAL_EXPORT_C_INCLUDES := $(OPENSSL_PATH)/$(TARGET_ARCH_ABI)/include
-LOCAL_SRC_FILES := $(LOCAL_PATH)/SQLCipherTest/libcrypto-1.1.1t/libcrypto.a
+LOCAL_SRC_FILES := $(OPENSSL_PATH)/$(TARGET_ARCH_ABI)/lib/libcrypto.a
 include $(PREBUILT_STATIC_LIBRARY)
