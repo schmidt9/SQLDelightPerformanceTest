@@ -3,9 +3,7 @@
 
 using namespace test;
 
-jclass javaClassRef;
-
-JNIEXPORT void
+extern "C" JNIEXPORT void
 Java_com_example_sqldelightperformancetest_androidApp_CppTestDatabase_createProjects(
         JNIEnv *env,
         jclass cls)
@@ -15,7 +13,7 @@ Java_com_example_sqldelightperformancetest_androidApp_CppTestDatabase_createProj
     database.createProjects();
 }
 
-JNIEXPORT jobject
+extern "C" JNIEXPORT jobject
 Java_com_example_sqldelightperformancetest_androidApp_CppTestDatabase_fetchProjects(
         JNIEnv *env,
         jclass cls)
@@ -25,33 +23,56 @@ Java_com_example_sqldelightperformancetest_androidApp_CppTestDatabase_fetchProje
     // https://medium.com/@TSG/how-to-obtain-an-arraylist-with-self-defined-java-kotlin-data-class-from-native-c-processing-8ee94ee86c25
 
     // create ArrayList
-    jclass java_util_class = env->FindClass("java/util/ArrayList");
-    jmethodID java_util_method_constructor = env->GetMethodID(java_util_class, "<init>", "()V");
-    jobject java_util_object = env->NewObject(java_util_class, java_util_method_constructor, "");
+    auto arrayListClass = env->FindClass("java/util/ArrayList");
+    auto arrayListConstructor = env->GetMethodID(arrayListClass, "<init>", "()V");
+    auto arrayListObject = env->NewObject(arrayListClass, arrayListConstructor);
 
     // get DatabaseProject class
-    javaClassRef = (jclass) env->NewGlobalRef(env->FindClass("com/example/sqldelightperformancetest/androidApp/DatabaseProject"));
-    jmethodID class_constructor = env->GetMethodID(javaClassRef, "<init>", "()V");
+    auto databaseProjectRef = (jclass) env->NewLocalRef(env->FindClass("com/example/sqldelightperformancetest/androidApp/DatabaseProject"));
+    auto databaseProjectConstructor = env->GetMethodID(databaseProjectRef, "<init>", "()V");
 
     auto projects = database.fetchProjects();
 
     for (auto &project : projects) {
         // create DatabaseProject object
-        jobject class_object = env->NewObject(javaClassRef, class_constructor, "");
+        auto databaseProjectObject = env->NewObject(databaseProjectRef, databaseProjectConstructor);
 
-        // set name property
-        jstring name = env->NewStringUTF(project.name.c_str());
-        jmethodID setter = env->GetMethodID(javaClassRef, "setName", "(Ljava/lang/String;)V");
-        env->CallVoidMethod(class_object, setter, name);
+        // set projectId
+        auto projectId = project.id;
+        auto projectIdSetter = env->GetMethodID(databaseProjectRef, "setProjectId", "(J)V");
+        env->CallVoidMethod(databaseProjectObject, projectIdSetter, projectId);
 
-        // TODO: complete
+        // set name
+        auto name = env->NewStringUTF(project.name.c_str());
+        auto nameSetter = env->GetMethodID(databaseProjectRef, "setName", "(Ljava/lang/String;)V");
+        env->CallVoidMethod(databaseProjectObject, nameSetter, name);
+
+        // set created
+        auto created = project.created;
+        auto createdSetter = env->GetMethodID(databaseProjectRef, "setCreated", "(J)V");
+        env->CallVoidMethod(databaseProjectObject, createdSetter, created);
+
+        // set updateTime
+        auto updateTime = project.updateTime;
+        auto updateTimeSetter = env->GetMethodID(databaseProjectRef, "setUpdateTime", "(J)V");
+        env->CallVoidMethod(databaseProjectObject, updateTimeSetter, updateTime);
+
+        // set isActive
+        auto isActive = project.isActive;
+        auto isActiveSetter = env->GetMethodID(databaseProjectRef, "setActive", "(Z)V");
+        env->CallVoidMethod(databaseProjectObject, isActiveSetter, isActive);
 
         // add object to array
-        jmethodID java_add_method = env->GetMethodID(java_util_class, "add", "(Ljava/lang/Object;)Z");
-        env->CallBooleanMethod(java_util_object, java_add_method, class_object);
+        auto arrayListAddMethod = env->GetMethodID(arrayListClass, "add", "(Ljava/lang/Object;)Z");
+        env->CallBooleanMethod(arrayListObject, arrayListAddMethod, databaseProjectObject);
+
+        // cleanup
+        env->DeleteLocalRef(databaseProjectObject);
+        env->DeleteLocalRef(name);
     }
 
-    env->DeleteGlobalRef(javaClassRef);
+    // cleanup
+    env->DeleteLocalRef(databaseProjectRef);
 
-    return java_util_object;
+    return arrayListObject;
 }

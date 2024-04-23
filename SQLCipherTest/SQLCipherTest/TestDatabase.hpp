@@ -17,7 +17,7 @@ namespace test {
     
     struct Project {
         
-        int id;
+        int64_t id;
         std::string name;
         int64_t created;
         int64_t updateTime;
