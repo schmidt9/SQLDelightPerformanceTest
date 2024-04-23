@@ -42,6 +42,8 @@ class MainActivity : AppCompatActivity() {
             Log.d("Tests", "Projects count ${projects.count()}")
         }
 
+        builder.append(if (BuildConfig.DEBUG) "\nRunning Debug" else "\nRunning Release").append("\n\n")
+
         builder.append("nativeCreateProjectsTime: ${nativeCreateProjectsTime / 1000.0}\n")
         builder.append("nativeFetchProjectsTime: ${nativeFetchProjectsTime / 1000.0}\n\n")
 
