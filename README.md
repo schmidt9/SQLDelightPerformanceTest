@@ -1,6 +1,6 @@
 # Description
 
-This project demonstrates performance difference between Kotlin and C++ implementations regarding SQLite operations on iOS.
+This project demonstrates performance difference between Kotlin and C++ implementations regarding SQLite operations on iOS and Android.
 
 It contains Kotlin Multiplatform Project including [SQLDelight](https://github.com/cashapp/sqldelight) and an Swift XCode project with framework containing C++ SQLite wrapper (which also includes Objective C wrapper for Swift - C++ interop).
 
@@ -8,7 +8,7 @@ Both Kotlin and C++ use the same [SQLChipher](https://github.com/sqlcipher/sqlci
 
 Performance test includes bulk inserts of 100 000 entities (using `INSERT`) and reading them into native structures afterwards (using `SELECT`)
 
-## Perfomance results using _iPhone SE_ and _SQLDelight 1.5.0_
+## iOS: perfomance results using _iPhone SE_ and _SQLDelight 1.5.0_
 
 ### Debug configuration
 
@@ -46,3 +46,7 @@ Performance test includes bulk inserts of 100 000 entities (using `INSERT`) and 
 | -------- | -------- | ------------ |
 | `INSERT` | ~0.79sec | **~0.47sec** |
 | `SELECT` | **~0.27sec** | ~0.46sec |
+
+## Android: performance results using _Nexus 5 (API 24) Simulator_ and _SQLDelight 2.0.2_
+
+### TODO: add results
