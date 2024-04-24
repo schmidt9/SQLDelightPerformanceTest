@@ -1,0 +1,12 @@
+prefix=/home/kiryl_kauzou/Downloads/lib/tools/../output/android/openssl-android-mips64
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: OpenSSL-libssl
+Description: Secure Sockets Layer and cryptography libraries
+Version: 1.1.0f
+Requires.private: libcrypto
+Libs: -L${libdir} -lssl
+Libs.private: -L/home/kiryl_kauzou/Downloads/lib/tools/mips64-android-toolchain/sysroot/usr/lib -lz -ldl 
+Cflags: -I${includedir}

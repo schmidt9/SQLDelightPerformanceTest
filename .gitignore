@@ -38,7 +38,6 @@ gradle-app.setting
 .gradletasknamecache
 
 # local project files
-lib/
 .idea/
 .idea/compiler.xml
 .idea/misc.xml
