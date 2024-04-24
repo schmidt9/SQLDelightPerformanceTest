@@ -5,9 +5,9 @@ plugins {
 
 dependencies {
     implementation(project(":shared"))
-    implementation("com.google.android.material:material:1.2.1")
-    implementation("androidx.appcompat:appcompat:1.2.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.0.2")
+    implementation(libs.material.v121)
+    implementation(libs.androidx.appcompat.v120)
+    implementation(libs.androidx.constraintlayout.v202)
 }
 
 android {

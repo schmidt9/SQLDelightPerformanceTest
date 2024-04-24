@@ -20,7 +20,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation("app.cash.sqldelight:runtime:2.0.2")
+                implementation(libs.runtime)
             }
         }
         val commonTest by getting {
@@ -31,20 +31,20 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
-                implementation("com.google.android.material:material:1.2.1")
-                implementation("app.cash.sqldelight:android-driver:2.0.2")
-                implementation("junit:junit:4.13.2")
+                implementation(libs.androidx.material)
+                implementation(libs.android.driver)
+                implementation(libs.junit.v413)
             }
         }
         val androidUnitTest by getting {
             dependencies {
                 implementation(kotlin("test-junit"))
-                implementation("junit:junit:4.13.2")
+                implementation(libs.junit.v413)
             }
         }
         val iosMain by getting {
             dependencies {
-                implementation("app.cash.sqldelight:native-driver:2.0.2")
+                implementation(libs.native.driver)
             }
         }
         val iosTest by getting
@@ -77,8 +77,6 @@ kotlin {
             baseName = projectName
         }
     }
-
-    tasks.register("testClasses")
 }
 
 android {
@@ -87,8 +85,5 @@ android {
     defaultConfig {
         minSdkVersion(24)
         targetSdkVersion(29)
-    }
-    buildFeatures {
-        buildConfig = true
     }
 }
