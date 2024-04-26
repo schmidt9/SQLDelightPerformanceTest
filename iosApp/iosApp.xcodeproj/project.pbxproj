@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -15,6 +15,8 @@
 		CEC6B3AB26184E1800E392EB /* TDTestDatabaseBridge.mm in Sources */ = {isa = PBXBuildFile; fileRef = CEC6B3AA26184E1800E392EB /* TDTestDatabaseBridge.mm */; };
 		CEC6B4052618592600E392EB /* SQLCipherTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC6B4042618592600E392EB /* SQLCipherTest.framework */; };
 		CEC6B4062618592600E392EB /* SQLCipherTest.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CEC6B4042618592600E392EB /* SQLCipherTest.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		CEE745302BDC178F0042A4CC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE7452F2BDC178F0042A4CC /* ContentView.swift */; };
+		CEE745322BDC17E10042A4CC /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE745312BDC17E10042A4CC /* iOSApp.swift */; };
 		E6AC6F13CDBE8E6B0808B3E3 /* libPods-iosApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F1EC25E2E842738E3B1B5410 /* libPods-iosApp.a */; };
 /* End PBXBuildFile section */
 
@@ -45,6 +47,8 @@
 		CEC6B3AA26184E1800E392EB /* TDTestDatabaseBridge.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TDTestDatabaseBridge.mm; sourceTree = "<group>"; };
 		CEC6B3AD26184E4300E392EB /* TDTestDatabaseBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TDTestDatabaseBridge.h; sourceTree = "<group>"; };
 		CEC6B4042618592600E392EB /* SQLCipherTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SQLCipherTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CEE7452F2BDC178F0042A4CC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		CEE745312BDC17E10042A4CC /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
 		F07A842754FC65E79882C3D3 /* Pods-iosApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.release.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.release.xcconfig"; sourceTree = "<group>"; };
 		F1EC25E2E842738E3B1B5410 /* libPods-iosApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iosApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -97,6 +101,8 @@
 				CE40EAD526174D5E00D3359E /* Info.plist */,
 				CEC6B3A926184E1800E392EB /* iosApp-Bridging-Header.h */,
 				CE40EAD226174D5E00D3359E /* LaunchScreen.storyboard */,
+				CEE7452F2BDC178F0042A4CC /* ContentView.swift */,
+				CEE745312BDC17E10042A4CC /* iOSApp.swift */,
 				CE40EACD26174D5D00D3359E /* Main.storyboard */,
 				CEC6B3AD26184E4300E392EB /* TDTestDatabaseBridge.h */,
 				CEC6B3AA26184E1800E392EB /* TDTestDatabaseBridge.mm */,
@@ -232,6 +238,8 @@
 			files = (
 				CEC6B3AB26184E1800E392EB /* TDTestDatabaseBridge.mm in Sources */,
 				CE40EACC26174D5D00D3359E /* ViewController.swift in Sources */,
+				CEE745302BDC178F0042A4CC /* ContentView.swift in Sources */,
+				CEE745322BDC17E10042A4CC /* iOSApp.swift in Sources */,
 				CE40EAC826174D5D00D3359E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -309,7 +317,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -364,7 +372,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
