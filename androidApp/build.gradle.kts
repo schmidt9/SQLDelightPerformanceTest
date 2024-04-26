@@ -11,6 +11,7 @@ dependencies {
 }
 
 android {
+    namespace = "com.example.sqldelightperformancetest.androidApp"
     compileSdkVersion(34)
     defaultConfig {
         applicationId = "com.example.sqldelightperformancetest.androidApp"
@@ -21,6 +22,7 @@ android {
         ndk {
             moduleName = "SQLCipherTest"
         }
+        resourceConfigurations += setOf()
     }
     buildTypes {
         getByName("release") {

@@ -1,7 +1,7 @@
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.jetbrainsCompose)
-    id("com.android.library")
+    alias(libs.plugins.androidApplication)
     id("app.cash.sqldelight") version "2.0.2"
     id("org.jetbrains.kotlin.native.cocoapods")
 }
@@ -89,10 +89,21 @@ kotlin {
 }
 
 android {
+    namespace = "com.example.sqldelightperformancetest.shared"
+
     compileSdkVersion(34)
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
+    sourceSets["main"].res.srcDirs("src/androidMain/res")
+
     defaultConfig {
+        applicationId = "com.example.sqldelightperformancetest.shared"
         minSdkVersion(24)
-        targetSdkVersion(29)
+        targetSdk = 31
+        versionCode = 1
+        versionName = "1.0"
+    }
+
+    dependencies {
+        implementation(libs.material.v121)
     }
 }
