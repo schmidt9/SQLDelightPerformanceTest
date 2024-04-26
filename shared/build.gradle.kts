@@ -29,6 +29,11 @@ kotlin {
                 implementation(compose.components.uiToolingPreview)
 
                 implementation(libs.runtime)
+
+                // https://voyager.adriel.cafe/setup
+                implementation(libs.voyager.navigator)
+                implementation(libs.voyager.transitions)
+                implementation(libs.voyager.screenmodel)
             }
         }
         val commonTest by getting {

@@ -22,6 +22,7 @@ kotlinGradlePlugin = "1.6.21"
 material = "1.2.1"
 oshiCore = "6.5.0"
 runtime = "2.0.2"
+voyagerVersion = "1.0.0"
 
 [libraries]
 android-driver = { module = "app.cash.sqldelight:android-driver", version.ref = "runtime" }
@@ -46,6 +47,10 @@ material-v121 = { module = "com.google.android.material:material", version.ref =
 native-driver = { module = "app.cash.sqldelight:native-driver", version.ref = "runtime" }
 oshi-core = { module = "com.github.oshi:oshi-core", version.ref = "oshiCore" }
 runtime = { module = "app.cash.sqldelight:runtime", version.ref = "runtime" }
+voyager-kodein = { module = "cafe.adriel.voyager:voyager-kodein", version.ref = "voyagerVersion" }
+voyager-navigator = { module = "cafe.adriel.voyager:voyager-navigator", version.ref = "voyagerVersion" }
+voyager-screenmodel = { module = "cafe.adriel.voyager:voyager-screenmodel", version.ref = "voyagerVersion" }
+voyager-transitions = { module = "cafe.adriel.voyager:voyager-transitions", version.ref = "voyagerVersion" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
