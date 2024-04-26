@@ -33,12 +33,13 @@ kotlin {
             dependencies {
                 implementation("com.google.android.material:material:1.2.1")
                 implementation("app.cash.sqldelight:android-driver:2.0.2")
+                implementation("junit:junit:4.13.2")
             }
         }
         val androidUnitTest by getting {
             dependencies {
                 implementation(kotlin("test-junit"))
-                implementation("junit:junit:4.13")
+                implementation("junit:junit:4.13.2")
             }
         }
         val iosMain by getting {
@@ -76,6 +77,8 @@ kotlin {
             baseName = projectName
         }
     }
+
+    tasks.register("testClasses")
 }
 
 android {
@@ -84,5 +87,8 @@ android {
     defaultConfig {
         minSdkVersion(24)
         targetSdkVersion(29)
+    }
+    buildFeatures {
+        buildConfig = true
     }
 }
