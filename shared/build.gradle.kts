@@ -1,5 +1,6 @@
 plugins {
-    kotlin("multiplatform")
+    alias(libs.plugins.kotlinMultiplatform)
+    alias(libs.plugins.jetbrainsCompose)
     id("com.android.library")
     id("app.cash.sqldelight") version "2.0.2"
     id("org.jetbrains.kotlin.native.cocoapods")
@@ -20,6 +21,13 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
+                implementation(compose.runtime)
+                implementation(compose.foundation)
+                implementation(compose.material)
+                implementation(compose.ui)
+                implementation(compose.components.resources)
+                implementation(compose.components.uiToolingPreview)
+
                 implementation(libs.runtime)
             }
         }
