@@ -39,8 +39,8 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
-                implementation(libs.androidx.material)
-                implementation(libs.android.driver)
+                implementation(libs.compose.ui.tooling.preview)
+                implementation(libs.androidx.activity.compose)
                 implementation(libs.junit.v413)
             }
         }
