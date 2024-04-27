@@ -14,7 +14,7 @@ appcompat = "1.2.0"
 compose = "1.6.4"
 compose-plugin = "1.6.1"
 constraintlayout = "2.0.2"
-gradle = "7.4.2"
+gradle = "8.3.2"
 junit = "4.13.2"
 junitVersion = "4.13"
 kotlin = "1.9.23"
@@ -23,6 +23,7 @@ material = "1.2.1"
 oshiCore = "6.5.0"
 runtime = "2.0.2"
 voyagerVersion = "1.0.0"
+napier = "2.6.1"
 
 [libraries]
 android-driver = { module = "app.cash.sqldelight:android-driver", version.ref = "runtime" }
@@ -51,6 +52,7 @@ voyager-kodein = { module = "cafe.adriel.voyager:voyager-kodein", version.ref = 
 voyager-navigator = { module = "cafe.adriel.voyager:voyager-navigator", version.ref = "voyagerVersion" }
 voyager-screenmodel = { module = "cafe.adriel.voyager:voyager-screenmodel", version.ref = "voyagerVersion" }
 voyager-transitions = { module = "cafe.adriel.voyager:voyager-transitions", version.ref = "voyagerVersion" }
+napier = { module = "io.github.aakira:napier", version.ref = "napier" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

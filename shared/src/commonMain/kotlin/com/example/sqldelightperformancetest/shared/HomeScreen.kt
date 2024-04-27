@@ -18,6 +18,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import cafe.adriel.voyager.core.model.rememberScreenModel
 import cafe.adriel.voyager.core.screen.Screen
+import io.github.aakira.napier.Napier
 
 class HomeScreen : Screen {
 
@@ -31,9 +32,11 @@ class HomeScreen : Screen {
             AnimatedVisibility(true) {
                 when (val state = screenModelState) {
                     is HomeScreenModel.State.RunningTest -> {
+                        Napier.d("STATE RunningTest ${state.isRunning}")
                         isRunningTest = state.isRunning
                     }
                     is HomeScreenModel.State.Result -> {
+                        Napier.d("STATE Result")
                         // TODO: impl
                     }
                 }
