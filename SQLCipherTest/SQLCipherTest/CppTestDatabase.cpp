@@ -28,7 +28,7 @@ Java_com_example_sqldelightperformancetest_androidApp_CppTestDatabase_fetchProje
     auto arrayListObject = env->NewObject(arrayListClass, arrayListConstructor);
 
     // get DatabaseProject class
-    auto databaseProjectRef = (jclass) env->NewLocalRef(env->FindClass("com/example/sqldelightperformancetest/androidApp/DatabaseProject"));
+    auto databaseProjectRef = (jclass) env->NewLocalRef(env->FindClass("comexampledb/Project"));
     auto databaseProjectConstructor = env->GetMethodID(databaseProjectRef, "<init>", "()V");
 
     auto projects = database.fetchProjects();
@@ -37,9 +37,9 @@ Java_com_example_sqldelightperformancetest_androidApp_CppTestDatabase_fetchProje
         // create DatabaseProject object
         auto databaseProjectObject = env->NewObject(databaseProjectRef, databaseProjectConstructor);
 
-        // set projectId
+        // set _id
         auto projectId = project.id;
-        auto projectIdSetter = env->GetMethodID(databaseProjectRef, "setProjectId", "(J)V");
+        auto projectIdSetter = env->GetMethodID(databaseProjectRef, "set_id", "(J)V");
         env->CallVoidMethod(databaseProjectObject, projectIdSetter, projectId);
 
         // set name
@@ -54,12 +54,12 @@ Java_com_example_sqldelightperformancetest_androidApp_CppTestDatabase_fetchProje
 
         // set updateTime
         auto updateTime = project.updateTime;
-        auto updateTimeSetter = env->GetMethodID(databaseProjectRef, "setUpdateTime", "(J)V");
+        auto updateTimeSetter = env->GetMethodID(databaseProjectRef, "setUpdate_time", "(J)V");
         env->CallVoidMethod(databaseProjectObject, updateTimeSetter, updateTime);
 
         // set isActive
-        auto isActive = project.isActive;
-        auto isActiveSetter = env->GetMethodID(databaseProjectRef, "setActive", "(Z)V");
+        auto isActive = (jlong) project.isActive;
+        auto isActiveSetter = env->GetMethodID(databaseProjectRef, "set_active", "(J)V");
         env->CallVoidMethod(databaseProjectObject, isActiveSetter, isActive);
 
         // add object to array
