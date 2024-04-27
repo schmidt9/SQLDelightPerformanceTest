@@ -1,4 +1,4 @@
-package com.example.sqldelightperformancetest.androidApp
+package com.example.sqldelightperformancetest.shared
 
 data class DatabaseProject(
     var projectId: Long = 0,
