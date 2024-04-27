@@ -25,7 +25,7 @@ class HomeScreen : Screen {
     @Composable
     override fun Content() {
         val screenModel = rememberScreenModel { HomeScreenModel() }
-        val screenModelState by screenModel.sharedState.collectAsState(HomeScreenModel.State.RunningTest(false))
+        val screenModelState by screenModel.state.collectAsState()
         var isRunningTest by remember { mutableStateOf(false) }
 
         Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
