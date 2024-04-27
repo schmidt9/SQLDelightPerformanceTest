@@ -37,6 +37,7 @@ class HomeScreen : Screen {
                     }
                     is HomeScreenModel.State.Result -> {
                         Napier.d("STATE Result")
+                        isRunningTest = false
                         // TODO: impl
                     }
                 }
