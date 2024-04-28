@@ -18,7 +18,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.newSingleThreadContext
 import kotlinx.coroutines.withContext
 
-class HomeScreenModel : StateScreenModel<HomeScreenModel.State>(State.RunningTest(false)) {
+class HomeScreenModel(val context: Any? = null) : StateScreenModel<HomeScreenModel.State>(State.RunningTest(false)) {
 
     sealed class State {
         data class RunningTest(val isRunning: Boolean) : State()
@@ -28,44 +28,44 @@ class HomeScreenModel : StateScreenModel<HomeScreenModel.State>(State.RunningTes
     fun runRecordsTest() {
         screenModelScope.launch(context = Dispatchers.IO) {
             mutableState.value = State.RunningTest(isRunning = true)
-            delay(1000) // for testing
             val records = listOf<Any>() // TODO: impl
+            fetchTestResults()
             mutableState.value = State.Result(records)
         }
     }
 
-//    private fun fetchTestResults(): String {
-//        val databaseTest = DatabaseTest(this)
-//        val builder = StringBuilder()
-//
-//        val nativeCreateProjectsTime = measureTimeMillis {
+    private fun fetchTestResults(): String {
+        val databaseTest = DatabaseTest(context)
+        val builder = StringBuilder()
+
+        val nativeCreateProjectsTime = measureTimeMillis {
 //            databaseTest.createProjects()
-//        }
-//
-//        val nativeFetchProjectsTime = measureTimeMillis {
+        }
+
+        val nativeFetchProjectsTime = measureTimeMillis {
 //            databaseTest.fetchProjects()
-//        }
-//
-//        val cppCreateProjectsTime = measureTimeMillis {
-//            CppTestDatabase.createProjects()
-//        }
-//
-//        val cppFetchProjectsTime = measureTimeMillis {
-//            val projects = CppTestDatabase.fetchProjects()
-//            Log.d("Tests", "Projects count ${projects.count()}")
-//        }
-//
-//        builder.append(if (isDebug) "\nRunning Debug" else "\nRunning Release").append("\n\n")
-//
-//        builder.append("nativeCreateProjectsTime: ${nativeCreateProjectsTime / 1000.0}\n")
-//        builder.append("nativeFetchProjectsTime: ${nativeFetchProjectsTime / 1000.0}\n\n")
-//
-//        builder.append("cppCreateProjectsTime: ${cppCreateProjectsTime / 1000.0}\n")
-//        builder.append("cppFetchProjectsTime: ${cppFetchProjectsTime / 1000.0}")
-//
-//        Log.d("Tests", "$builder")
-//
-//        return builder.toString()
-//    }
+        }
+
+        val cppCreateProjectsTime = measureTimeMillis {
+            createNativeProjects()
+        }
+
+        val cppFetchProjectsTime = measureTimeMillis {
+            val projects = fetchNativeProjects()
+            Napier.d("Projects count ${projects.count()}")
+        }
+
+        builder.append(if (isDebug) "\nRunning Debug" else "\nRunning Release").append("\n\n")
+
+        builder.append("nativeCreateProjectsTime: ${nativeCreateProjectsTime / 1000.0}\n")
+        builder.append("nativeFetchProjectsTime: ${nativeFetchProjectsTime / 1000.0}\n\n")
+
+        builder.append("cppCreateProjectsTime: ${cppCreateProjectsTime / 1000.0}\n")
+        builder.append("cppFetchProjectsTime: ${cppFetchProjectsTime / 1000.0}")
+
+        Napier.d("$builder")
+
+        return builder.toString()
+    }
 
 }

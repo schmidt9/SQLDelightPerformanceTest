@@ -72,7 +72,9 @@ namespace test {
     void
     TestDatabase::printError()
     {
-        printf("SQLite error: %s code %d\n", sqlite3_errmsg(mDb), sqlite3_errcode(mDb));
+        auto msg = sqlite3_errmsg(mDb);
+        auto code = sqlite3_errcode(mDb);
+        printf("SQLite error: %s code %d\n", msg, code);
     }
     
     void

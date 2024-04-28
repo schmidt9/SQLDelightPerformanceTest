@@ -13,7 +13,7 @@ fun App(context: Any? = null) {
     Napier.base(DebugAntilog())
 
     MaterialTheme {
-        Navigator(screen = HomeScreen()) { navigator ->
+        Navigator(screen = HomeScreen(context)) { navigator ->
             SlideTransition(navigator)
         }
     }

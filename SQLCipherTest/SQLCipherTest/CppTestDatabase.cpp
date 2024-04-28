@@ -3,22 +3,36 @@
 
 using namespace test;
 
-extern "C" JNIEXPORT void
-Java_com_example_sqldelightperformancetest_androidApp_CppTestDatabase_createProjects(
-        JNIEnv *env,
-        jclass cls)
-{
-    auto database = TestDatabase("/data/data/com.example.sqldelightperformancetest.androidApp/databases/test.db");
+static jclass databaseProjectRef;
+
+JNIEXPORT jint JNICALL JNI_OnLoad (JavaVM * vm, void * reserved) {
+    JNIEnv* env;
+
+    if (vm->GetEnv(reinterpret_cast<void**>(&env), JNI_VERSION_1_6) != JNI_OK) {
+        return JNI_ERR;
+    }
+
+    auto cls = env->FindClass("comexampledb/Project");
+
+    if (cls == NULL) {
+        return JNI_ERR;
+    }
+
+    databaseProjectRef = (jclass) env->NewGlobalRef(cls);
+
+    return JNI_VERSION_1_6;
+}
+
+void
+createProjects(const std::string &databasePath) {
+    auto database = TestDatabase(databasePath);
 
     database.createProjects();
 }
 
-extern "C" JNIEXPORT jobject
-Java_com_example_sqldelightperformancetest_androidApp_CppTestDatabase_fetchProjects(
-        JNIEnv *env,
-        jclass cls)
-{
-    auto database = TestDatabase("/data/data/com.example.sqldelightperformancetest.androidApp/databases/test.db");
+jobject
+fetchProjects(JNIEnv *env, const std::string &databasePath) {
+    auto database = TestDatabase(databasePath);
 
     // https://medium.com/@TSG/how-to-obtain-an-arraylist-with-self-defined-java-kotlin-data-class-from-native-c-processing-8ee94ee86c25
 
@@ -27,40 +41,19 @@ Java_com_example_sqldelightperformancetest_androidApp_CppTestDatabase_fetchProje
     auto arrayListConstructor = env->GetMethodID(arrayListClass, "<init>", "()V");
     auto arrayListObject = env->NewObject(arrayListClass, arrayListConstructor);
 
-    // get DatabaseProject class
-    auto databaseProjectRef = (jclass) env->NewLocalRef(env->FindClass("comexampledb/Project"));
-    auto databaseProjectConstructor = env->GetMethodID(databaseProjectRef, "<init>", "()V");
+    auto databaseProjectConstructor = env->GetMethodID(databaseProjectRef, "<init>","(JLjava/lang/String;Ljava/lang/Long;Ljava/lang/Long;Ljava/lang/Long;)V");
 
     auto projects = database.fetchProjects();
 
     for (auto &project : projects) {
-        // create DatabaseProject object
-        auto databaseProjectObject = env->NewObject(databaseProjectRef, databaseProjectConstructor);
-
-        // set _id
         auto projectId = project.id;
-        auto projectIdSetter = env->GetMethodID(databaseProjectRef, "set_id", "(J)V");
-        env->CallVoidMethod(databaseProjectObject, projectIdSetter, projectId);
-
-        // set name
         auto name = env->NewStringUTF(project.name.c_str());
-        auto nameSetter = env->GetMethodID(databaseProjectRef, "setName", "(Ljava/lang/String;)V");
-        env->CallVoidMethod(databaseProjectObject, nameSetter, name);
-
-        // set created
         auto created = project.created;
-        auto createdSetter = env->GetMethodID(databaseProjectRef, "setCreated", "(J)V");
-        env->CallVoidMethod(databaseProjectObject, createdSetter, created);
-
-        // set updateTime
         auto updateTime = project.updateTime;
-        auto updateTimeSetter = env->GetMethodID(databaseProjectRef, "setUpdate_time", "(J)V");
-        env->CallVoidMethod(databaseProjectObject, updateTimeSetter, updateTime);
-
-        // set isActive
         auto isActive = (jlong) project.isActive;
-        auto isActiveSetter = env->GetMethodID(databaseProjectRef, "set_active", "(J)V");
-        env->CallVoidMethod(databaseProjectObject, isActiveSetter, isActive);
+
+        // create DatabaseProject object
+        auto databaseProjectObject = env->NewObject(databaseProjectRef, databaseProjectConstructor, projectId, name, created, updateTime, isActive);
 
         // add object to array
         auto arrayListAddMethod = env->GetMethodID(arrayListClass, "add", "(Ljava/lang/Object;)Z");
@@ -71,8 +64,32 @@ Java_com_example_sqldelightperformancetest_androidApp_CppTestDatabase_fetchProje
         env->DeleteLocalRef(name);
     }
 
-    // cleanup
-    env->DeleteLocalRef(databaseProjectRef);
-
     return arrayListObject;
+}
+
+extern "C" JNIEXPORT void
+Java_com_example_sqldelightperformancetest_androidApp_CppTestDatabase_createProjects(
+        JNIEnv *env,
+        jclass cls)
+{
+    createProjects("/data/data/com.example.sqldelightperformancetest.androidApp/databases/test.db");
+}
+
+extern "C" JNIEXPORT jobject
+Java_com_example_sqldelightperformancetest_androidApp_CppTestDatabase_fetchProjects(
+        JNIEnv *env,
+        jclass cls)
+{
+    return fetchProjects(env, "/data/data/com.example.sqldelightperformancetest.androidApp/databases/test.db");
+}
+
+extern "C" // TODO: refactor
+JNIEXPORT void JNICALL
+Java_com_example_sqldelightperformancetest_shared_CppTestDatabase_createProjects(JNIEnv *env, jclass clazz) {
+    createProjects("/data/data/com.example.sqldelightperformancetest.shared/databases/test.db");
+}
+extern "C" // TODO: refactor
+JNIEXPORT jobject JNICALL
+Java_com_example_sqldelightperformancetest_shared_CppTestDatabase_fetchProjects(JNIEnv *env, jclass clazz) {
+    return fetchProjects(env, "/data/data/com.example.sqldelightperformancetest.shared/databases/test.db");
 }

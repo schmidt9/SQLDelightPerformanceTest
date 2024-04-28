@@ -1,7 +1,7 @@
 package com.example.sqldelightperformancetest.androidApp;
 
 import java.util.ArrayList;
-import comexampledb.Project;
+import com.example.sqldelightperformancetest.shared.Project;
 
 public class CppTestDatabase {
 

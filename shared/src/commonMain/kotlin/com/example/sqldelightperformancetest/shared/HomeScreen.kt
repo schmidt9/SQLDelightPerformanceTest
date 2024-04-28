@@ -20,11 +20,11 @@ import cafe.adriel.voyager.core.model.rememberScreenModel
 import cafe.adriel.voyager.core.screen.Screen
 import io.github.aakira.napier.Napier
 
-class HomeScreen : Screen {
+class HomeScreen(val context: Any? = null) : Screen {
 
     @Composable
     override fun Content() {
-        val screenModel = rememberScreenModel { HomeScreenModel() }
+        val screenModel = rememberScreenModel { HomeScreenModel(context) }
         val screenModelState by screenModel.state.collectAsState()
         var isRunningTest by remember { mutableStateOf(false) }
 
