@@ -3,22 +3,12 @@
 
 using namespace test;
 
-static jclass databaseProjectRef;
-
 JNIEXPORT jint JNICALL JNI_OnLoad (JavaVM * vm, void * reserved) {
     JNIEnv* env;
 
     if (vm->GetEnv(reinterpret_cast<void**>(&env), JNI_VERSION_1_6) != JNI_OK) {
         return JNI_ERR;
     }
-
-    auto cls = env->FindClass("comexampledb/Project");
-
-    if (cls == NULL) {
-        return JNI_ERR;
-    }
-
-    databaseProjectRef = (jclass) env->NewGlobalRef(cls);
 
     return JNI_VERSION_1_6;
 }
@@ -41,28 +31,48 @@ fetchProjects(JNIEnv *env, const std::string &databasePath) {
     auto arrayListConstructor = env->GetMethodID(arrayListClass, "<init>", "()V");
     auto arrayListObject = env->NewObject(arrayListClass, arrayListConstructor);
 
-    auto databaseProjectConstructor = env->GetMethodID(databaseProjectRef, "<init>","(JLjava/lang/String;Ljava/lang/Long;Ljava/lang/Long;Ljava/lang/Long;)V");
-
     auto projects = database.fetchProjects();
 
     for (auto &project : projects) {
-        auto projectId = project.id;
+        auto projectId = (jlong) project.id;
         auto name = env->NewStringUTF(project.name.c_str());
-        auto created = project.created;
-        auto updateTime = project.updateTime;
-        auto isActive = (jlong) project.isActive;
+
+        auto longClass = env->FindClass("java/lang/Long");
+        auto valueOfMethodId = env->GetStaticMethodID(longClass, "valueOf", "(J)Ljava/lang/Long;");
+        auto created = env->CallStaticObjectMethod(longClass, valueOfMethodId, (jlong) project.created);
+        auto updateTime = env->CallStaticObjectMethod(longClass, valueOfMethodId, (jlong) project.updateTime);
+        auto isActive = env->CallStaticObjectMethod(longClass, valueOfMethodId, (jlong) project.isActive);
+
+        auto cls = env->FindClass("comexampledb/Project");
+        auto databaseProjectConstructor = env->GetMethodID(
+            cls,
+            "<init>",
+            "(JLjava/lang/String;Ljava/lang/Long;Ljava/lang/Long;Ljava/lang/Long;)V");
 
         // create DatabaseProject object
-        auto databaseProjectObject = env->NewObject(databaseProjectRef, databaseProjectConstructor, projectId, name, created, updateTime, isActive);
+        auto databaseProjectObject = env->NewObject(
+            cls,
+            databaseProjectConstructor,
+            projectId,
+            name,
+            created,
+            updateTime,
+            isActive);
 
         // add object to array
         auto arrayListAddMethod = env->GetMethodID(arrayListClass, "add", "(Ljava/lang/Object;)Z");
         env->CallBooleanMethod(arrayListObject, arrayListAddMethod, databaseProjectObject);
 
         // cleanup
-        env->DeleteLocalRef(databaseProjectObject);
         env->DeleteLocalRef(name);
+        env->DeleteLocalRef(longClass);
+        env->DeleteLocalRef(created);
+        env->DeleteLocalRef(updateTime);
+        env->DeleteLocalRef(isActive);
+        env->DeleteLocalRef(cls);
+        env->DeleteLocalRef(databaseProjectObject);
     }
+
 
     return arrayListObject;
 }
