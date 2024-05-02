@@ -26,7 +26,7 @@ class HomeScreenModel(val context: Any? = null) : StateScreenModel<HomeScreenMod
     }
 
     fun runRecordsTest() {
-        screenModelScope.launch(context = Dispatchers.IO) {
+        screenModelScope.launch(Dispatchers.IO) {
             mutableState.value = State.RunningTest(isRunning = true)
             val records = listOf<Any>() // TODO: impl
             fetchTestResults()
@@ -35,7 +35,7 @@ class HomeScreenModel(val context: Any? = null) : StateScreenModel<HomeScreenMod
     }
 
     private fun fetchTestResults(): String {
-        val databaseTest = DatabaseTest(context)
+//        val databaseTest = DatabaseTest(context)
         val builder = StringBuilder()
 
         val nativeCreateProjectsTime = measureTimeMillis {
@@ -47,7 +47,7 @@ class HomeScreenModel(val context: Any? = null) : StateScreenModel<HomeScreenMod
         }
 
         val cppCreateProjectsTime = measureTimeMillis {
-            createNativeProjects()
+            createNativeProjects(context)
         }
 
         val cppFetchProjectsTime = measureTimeMillis {

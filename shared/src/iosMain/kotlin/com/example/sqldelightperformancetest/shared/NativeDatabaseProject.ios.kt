@@ -6,6 +6,6 @@ actual fun fetchNativeProjects(): ArrayList<Project> {
     TODO("Not yet implemented")
 }
 
-actual fun createNativeProjects() {
+actual fun createNativeProjects(context: Any?) {
     TODO("Not yet implemented")
 }
