@@ -1,23 +1,18 @@
+#include <android/log.h>
 #include "CppTestDatabase.hpp"
 #include "TestDatabase.hpp"
 
 using namespace test;
-
-JNIEXPORT jint JNICALL JNI_OnLoad (JavaVM * vm, void * reserved) {
-    JNIEnv* env;
-
-    if (vm->GetEnv(reinterpret_cast<void**>(&env), JNI_VERSION_1_6) != JNI_OK) {
-        return JNI_ERR;
-    }
-
-    return JNI_VERSION_1_6;
-}
 
 void
 createProjects(const std::string &databasePath) {
     auto database = TestDatabase(databasePath);
 
     database.createProjects();
+
+    if (auto error = database.getLastError(); !error.empty()) {
+        __android_log_write(ANDROID_LOG_ERROR, "CppTestDatabase", error.c_str());
+    }
 }
 
 jobject
