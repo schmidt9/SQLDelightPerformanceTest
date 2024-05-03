@@ -4,9 +4,23 @@
 
 using namespace test;
 
+std::string
+convertJstringToStdString(JNIEnv *env, jstring value)
+{
+    jboolean isCopy;
+    auto convertedValue = (env)->GetStringUTFChars(value, &isCopy);
+    auto result = std::string(convertedValue);
+
+    env->ReleaseStringUTFChars(value, convertedValue);
+
+    return result;
+}
+
 void
-createProjects(const std::string &databasePath, int count) {
-    auto database = TestDatabase(databasePath);
+createProjects(JNIEnv *env, jstring databasePath, jint count)
+{
+    auto _databasePath = convertJstringToStdString(env, databasePath);
+    auto database = TestDatabase(_databasePath);
 
     database.createProjects(count);
 
@@ -16,8 +30,10 @@ createProjects(const std::string &databasePath, int count) {
 }
 
 jobject
-fetchProjects(JNIEnv *env, const std::string &databasePath) {
-    auto database = TestDatabase(databasePath);
+fetchProjects(JNIEnv *env, jstring databasePath)
+{
+    auto _databasePath = convertJstringToStdString(env, databasePath);
+    auto database = TestDatabase(_databasePath);
 
     // https://medium.com/@TSG/how-to-obtain-an-arraylist-with-self-defined-java-kotlin-data-class-from-native-c-processing-8ee94ee86c25
 
@@ -74,11 +90,13 @@ fetchProjects(JNIEnv *env, const std::string &databasePath) {
 
 extern "C"
 JNIEXPORT void JNICALL
-Java_com_example_sqldelightperformancetest_shared_CppTestDatabase_createProjects(JNIEnv *env, jclass clazz, jint count) {
-    createProjects("/data/data/com.example.sqldelightperformancetest.shared/databases/test.db", count);
+Java_com_example_sqldelightperformancetest_shared_CppTestDatabase_createProjects(JNIEnv *env, jclass clazz, jstring databasePath, jint count)
+{
+    createProjects(env, databasePath, count);
 }
 extern "C" // TODO: refactor
 JNIEXPORT jobject JNICALL
-Java_com_example_sqldelightperformancetest_shared_CppTestDatabase_fetchProjects(JNIEnv *env, jclass clazz) {
-    return fetchProjects(env, "/data/data/com.example.sqldelightperformancetest.shared/databases/test.db");
+Java_com_example_sqldelightperformancetest_shared_CppTestDatabase_fetchProjects(JNIEnv *env, jclass clazz, jstring databasePath)
+{
+    return fetchProjects(env, databasePath);
 }

@@ -41,7 +41,7 @@ class HomeScreenModel(val context: Any? = null) : StateScreenModel<HomeScreenMod
         }
 
         val sqlite3FetchProjectsTime = measureTimeMillis {
-            fetchNativeProjects()
+            fetchNativeProjects(context)
         }
 
         builder.append(if (isDebug) "\nRunning Debug" else "\nRunning Release").append("\n\n")

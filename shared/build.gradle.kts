@@ -12,10 +12,23 @@ kotlin {
     // Revert to just ios() when gradle plugin can properly resolve it
     // https://github.com/cashapp/sqldelight/issues/2044
     val onPhone = System.getenv("SDK_NAME")?.startsWith("iphoneos") ?: false
-    if (onPhone) {
+    val iosTarget = if (onPhone) {
         iosArm64("ios")
     } else {
         iosX64("ios")
+    }
+
+    // https://kotlinlang.org/docs/native-app-with-c-and-libcurl.html#before-you-start
+    iosTarget.apply {
+        compilations {
+            getByName("main") {
+                cinterops.create("TestDatabaseInterop") {
+                    includeDirs {
+                        allHeaders("../iosApp/iosApp")
+                    }
+                }
+            }
+        }
     }
 
     sourceSets {

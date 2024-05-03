@@ -16,7 +16,7 @@
 
 + (void)createProjectsWithDatabasePath:(NSString *)databasePath
 {
-    test::TestDatabase([databasePath UTF8String]).createProjects();
+    test::TestDatabase([databasePath UTF8String]).createProjects(100000);
 }
 
 + (NSArray<TDProject *> *)fetchProjectsWithDatabasePath:(NSString *)databasePath

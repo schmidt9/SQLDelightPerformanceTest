@@ -30,7 +30,7 @@ class ViewController: UIViewController {
 
         logString += "start createProjects() - INSERT\n"
         var startDate = Date()
-        DatabaseTest().createProjects()
+        DatabaseTest().createProjects(count: 100_000)
         var endDate = Date()
         logString += "createProjects() elapsed time \(endDate.timeIntervalSince(startDate))\n"
 
