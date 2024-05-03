@@ -4,19 +4,9 @@ import cafe.adriel.voyager.core.model.StateScreenModel
 import cafe.adriel.voyager.core.model.screenModelScope
 import com.example.db.DatabaseTest
 import io.github.aakira.napier.Napier
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.IO
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.asSharedFlow
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.newSingleThreadContext
-import kotlinx.coroutines.withContext
 
 class HomeScreenModel(val context: Any? = null) : StateScreenModel<HomeScreenModel.State>(State.RunningTest(false)) {
 
@@ -39,31 +29,31 @@ class HomeScreenModel(val context: Any? = null) : StateScreenModel<HomeScreenMod
         val databaseTest = DatabaseTest(context)
         val builder = StringBuilder()
 
-        val nativeCreateProjectsTime = measureTimeMillis {
+        val sqlDelightCreateProjectsTime = measureTimeMillis {
             databaseTest.createProjects(projectsCount)
         }
 
-        val nativeFetchProjectsTime = measureTimeMillis {
+        val sqlDelightFetchProjectsTime = measureTimeMillis {
             databaseTest.fetchProjects()
         }
 
-        val cppCreateProjectsTime = measureTimeMillis {
+        val sqlite3CreateProjectsTime = measureTimeMillis {
             createNativeProjects(context, projectsCount)
         }
 
-        val cppFetchProjectsTime = measureTimeMillis {
-            val projects = fetchNativeProjects()
+        val sqlite3FetchProjectsTime = measureTimeMillis {
+            fetchNativeProjects()
         }
 
         builder.append(if (isDebug) "\nRunning Debug" else "\nRunning Release").append("\n\n")
 
         builder.append("Test projects count: $projectsCount\n\n")
 
-        builder.append("SQLDelight create projects: ${nativeCreateProjectsTime / 1000.0}\n")
-        builder.append("SQLDelight fetch projects: ${nativeFetchProjectsTime / 1000.0}\n\n")
+        builder.append("SQLDelight create projects: ${sqlDelightCreateProjectsTime / 1000.0}\n")
+        builder.append("SQLDelight fetch projects: ${sqlDelightFetchProjectsTime / 1000.0}\n\n")
 
-        builder.append("sqlite3 (SQLCipher) create projects: ${cppCreateProjectsTime / 1000.0}\n")
-        builder.append("sqlite3 (SQLCipher) fetch projects: ${cppFetchProjectsTime / 1000.0}")
+        builder.append("sqlite3 (SQLCipher) create projects: ${sqlite3CreateProjectsTime / 1000.0}\n")
+        builder.append("sqlite3 (SQLCipher) fetch projects: ${sqlite3FetchProjectsTime / 1000.0}")
 
         Napier.d("$builder")
 
