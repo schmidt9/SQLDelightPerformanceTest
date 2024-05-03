@@ -96,7 +96,7 @@ namespace test {
     }
     
     void
-    TestDatabase::createProjects()
+    TestDatabase::createProjects(int count)
     {
         clearProjectsTable();
         
@@ -114,7 +114,7 @@ namespace test {
         
         if (auto stmt = prepare(query)) {
             
-            for (int i = 0; i < 100000; ++i) {
+            for (int i = 0; i < count; ++i) {
                 auto projectName = "Project " + std::to_string(i);
                 sqlite3_bind_text(stmt, 1, projectName.c_str(), (int) projectName.size(), SQLITE_STATIC);
                 stepDone(stmt);

@@ -35,33 +35,35 @@ class HomeScreenModel(val context: Any? = null) : StateScreenModel<HomeScreenMod
     }
 
     private fun fetchTestResults(): String {
-//        val databaseTest = DatabaseTest(context)
+        val projectsCount = 100_000
+        val databaseTest = DatabaseTest(context)
         val builder = StringBuilder()
 
         val nativeCreateProjectsTime = measureTimeMillis {
-//            databaseTest.createProjects()
+            databaseTest.createProjects(projectsCount)
         }
 
         val nativeFetchProjectsTime = measureTimeMillis {
-//            databaseTest.fetchProjects()
+            databaseTest.fetchProjects()
         }
 
         val cppCreateProjectsTime = measureTimeMillis {
-            createNativeProjects(context)
+            createNativeProjects(context, projectsCount)
         }
 
         val cppFetchProjectsTime = measureTimeMillis {
             val projects = fetchNativeProjects()
-            Napier.d("Projects count ${projects.count()}")
         }
 
         builder.append(if (isDebug) "\nRunning Debug" else "\nRunning Release").append("\n\n")
 
-        builder.append("nativeCreateProjectsTime: ${nativeCreateProjectsTime / 1000.0}\n")
-        builder.append("nativeFetchProjectsTime: ${nativeFetchProjectsTime / 1000.0}\n\n")
+        builder.append("Test projects count: $projectsCount\n\n")
 
-        builder.append("cppCreateProjectsTime: ${cppCreateProjectsTime / 1000.0}\n")
-        builder.append("cppFetchProjectsTime: ${cppFetchProjectsTime / 1000.0}")
+        builder.append("SQLDelight create projects: ${nativeCreateProjectsTime / 1000.0}\n")
+        builder.append("SQLDelight fetch projects: ${nativeFetchProjectsTime / 1000.0}\n\n")
+
+        builder.append("sqlite3 (SQLCipher) create projects: ${cppCreateProjectsTime / 1000.0}\n")
+        builder.append("sqlite3 (SQLCipher) fetch projects: ${cppFetchProjectsTime / 1000.0}")
 
         Napier.d("$builder")
 

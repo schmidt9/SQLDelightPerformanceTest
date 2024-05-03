@@ -15,13 +15,13 @@ class DatabaseTest(context: Any?) {
         database = TestDatabase(driver)
     }
 
-    fun createProjects() {
+    fun createProjects(count: Int) {
         val queries = database.dataQueries
 
         queries.clearProjectsTable()
 
         database.transaction {
-            for (i in 0 until 100000) {
+            for (i in 0 until count) {
                 queries.createProject("Project $i")
             }
         }

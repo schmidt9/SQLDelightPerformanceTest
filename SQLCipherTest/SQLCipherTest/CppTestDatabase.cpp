@@ -5,10 +5,10 @@
 using namespace test;
 
 void
-createProjects(const std::string &databasePath) {
+createProjects(const std::string &databasePath, int count) {
     auto database = TestDatabase(databasePath);
 
-    database.createProjects();
+    database.createProjects(count);
 
     if (auto error = database.getLastError(); !error.empty()) {
         __android_log_write(ANDROID_LOG_ERROR, "CppTestDatabase", error.c_str());
@@ -77,7 +77,7 @@ Java_com_example_sqldelightperformancetest_androidApp_CppTestDatabase_createProj
         JNIEnv *env,
         jclass cls)
 {
-    createProjects("/data/data/com.example.sqldelightperformancetest.androidApp/databases/test.db");
+    createProjects("/data/data/com.example.sqldelightperformancetest.androidApp/databases/test.db", 0); // TODO: remove or fix
 }
 
 extern "C" JNIEXPORT jobject
@@ -90,8 +90,8 @@ Java_com_example_sqldelightperformancetest_androidApp_CppTestDatabase_fetchProje
 
 extern "C" // TODO: refactor
 JNIEXPORT void JNICALL
-Java_com_example_sqldelightperformancetest_shared_CppTestDatabase_createProjects(JNIEnv *env, jclass clazz) {
-    createProjects("/data/data/com.example.sqldelightperformancetest.shared/databases/test.db");
+Java_com_example_sqldelightperformancetest_shared_CppTestDatabase_createProjects(JNIEnv *env, jclass clazz, jint count) {
+    createProjects("/data/data/com.example.sqldelightperformancetest.shared/databases/test.db", count);
 }
 extern "C" // TODO: refactor
 JNIEXPORT jobject JNICALL

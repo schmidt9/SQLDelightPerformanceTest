@@ -19,7 +19,7 @@ Java_com_example_sqldelightperformancetest_androidApp_CppTestDatabase_fetchProje
 extern "C"
 JNIEXPORT void JNICALL
 Java_com_example_sqldelightperformancetest_shared_CppTestDatabase_createProjects(JNIEnv *env,
-                                                                                 jclass clazz);
+                                                                                 jclass clazz, jint count);
 extern "C"
 JNIEXPORT jobject JNICALL
 Java_com_example_sqldelightperformancetest_shared_CppTestDatabase_fetchProjects(JNIEnv *env,

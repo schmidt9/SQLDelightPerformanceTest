@@ -51,7 +51,7 @@ namespace test {
         
     public:
         
-        void createProjects();
+        void createProjects(int count);
         
         std::vector<Project> fetchProjects();
 
