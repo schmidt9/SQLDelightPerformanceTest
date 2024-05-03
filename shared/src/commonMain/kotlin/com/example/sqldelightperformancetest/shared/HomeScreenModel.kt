@@ -12,15 +12,14 @@ class HomeScreenModel(val context: Any? = null) : StateScreenModel<HomeScreenMod
 
     sealed class State {
         data class RunningTest(val isRunning: Boolean) : State()
-        data class Result(val records: List<Any>) : State()
+        data class Result(val logString: String) : State()
     }
 
     fun runRecordsTest() {
         screenModelScope.launch(Dispatchers.IO) {
             mutableState.value = State.RunningTest(isRunning = true)
-            val records = listOf<Any>() // TODO: impl
-            fetchTestResults()
-            mutableState.value = State.Result(records)
+            val logString = fetchTestResults()
+            mutableState.value = State.Result(logString)
         }
     }
 

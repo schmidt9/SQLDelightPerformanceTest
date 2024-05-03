@@ -19,6 +19,7 @@ import androidx.compose.ui.Modifier
 import cafe.adriel.voyager.core.model.rememberScreenModel
 import cafe.adriel.voyager.core.screen.Screen
 import io.github.aakira.napier.Napier
+import kotlin.math.log
 
 class HomeScreen(val context: Any? = null) : Screen {
 
@@ -27,18 +28,18 @@ class HomeScreen(val context: Any? = null) : Screen {
         val screenModel = rememberScreenModel { HomeScreenModel(context) }
         val screenModelState by screenModel.state.collectAsState()
         var isRunningTest by remember { mutableStateOf(false) }
+        var logString by remember { mutableStateOf("") }
 
         Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
             AnimatedVisibility(true) {
                 when (val state = screenModelState) {
                     is HomeScreenModel.State.RunningTest -> {
-                        Napier.d("STATE RunningTest ${state.isRunning}")
                         isRunningTest = state.isRunning
+                        logString = ""
                     }
                     is HomeScreenModel.State.Result -> {
-                        Napier.d("STATE Result")
                         isRunningTest = false
-                        // TODO: impl
+                        logString = state.logString
                     }
                 }
                 Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
@@ -46,6 +47,10 @@ class HomeScreen(val context: Any? = null) : Screen {
                         screenModel.runRecordsTest()
                     }, enabled = !isRunningTest) {
                         Text("Run records test")
+                    }
+
+                    if (logString.isNotBlank()) {
+                        Text(logString)
                     }
 
                     if (isRunningTest) {
