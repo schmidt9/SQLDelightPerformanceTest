@@ -8,7 +8,5 @@ pluginManagement {
 }
 rootProject.name = "SQLDelightPerformanceTest"
 
-
-//include(":androidApp")
 include(":shared")
 

@@ -72,23 +72,7 @@ fetchProjects(JNIEnv *env, const std::string &databasePath) {
     return arrayListObject;
 }
 
-extern "C" JNIEXPORT void
-Java_com_example_sqldelightperformancetest_androidApp_CppTestDatabase_createProjects(
-        JNIEnv *env,
-        jclass cls)
-{
-    createProjects("/data/data/com.example.sqldelightperformancetest.androidApp/databases/test.db", 0); // TODO: remove or fix
-}
-
-extern "C" JNIEXPORT jobject
-Java_com_example_sqldelightperformancetest_androidApp_CppTestDatabase_fetchProjects(
-        JNIEnv *env,
-        jclass cls)
-{
-    return fetchProjects(env, "/data/data/com.example.sqldelightperformancetest.androidApp/databases/test.db");
-}
-
-extern "C" // TODO: refactor
+extern "C"
 JNIEXPORT void JNICALL
 Java_com_example_sqldelightperformancetest_shared_CppTestDatabase_createProjects(JNIEnv *env, jclass clazz, jint count) {
     createProjects("/data/data/com.example.sqldelightperformancetest.shared/databases/test.db", count);
