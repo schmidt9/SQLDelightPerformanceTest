@@ -1,7 +1,9 @@
 package com.example.sqldelightperformancetest.shared
 
+import TestDatabaseInterop.TDProject
 import TestDatabaseInterop.TDTestDatabaseBridge
 import comexampledb.Project
+import io.github.aakira.napier.Napier
 import kotlinx.cinterop.ExperimentalForeignApi
 import platform.Foundation.NSApplicationSupportDirectory
 import platform.Foundation.NSFileManager
@@ -14,11 +16,26 @@ import platform.darwin.nil
 actual fun fetchNativeProjects(context: Any?): ArrayList<Project> {
     val databasePath = databasePath(nil)
 
-    return TDTestDatabaseBridge().fetchProjectsWithDatabasePath(databasePath)
+    val objcProjects = TDTestDatabaseBridge.fetchProjectsWithDatabasePath(databasePath)
+    val projects = objcProjects!!.map {
+        it as TDProject
+
+        Project(
+            _id = it.projectId,
+            name = it.name,
+            created = it.created,
+            update_time = it.updateTime,
+            is_active = if (it.isActive) 1 else 0
+        )
+    } as ArrayList
+
+    return projects
 }
 
+@OptIn(ExperimentalForeignApi::class)
 actual fun createNativeProjects(context: Any?, count: Int) {
-    TODO("Not yet implemented")
+    val databasePath = databasePath(nil)
+    TDTestDatabaseBridge.createProjectsWithDatabasePath(databasePath)
 }
 
 actual fun databaseDirectoryPath(context: Any?): String {
@@ -30,7 +47,5 @@ actual fun databaseDirectoryPath(context: Any?): String {
 
 @OptIn(ExperimentalForeignApi::class)
 actual fun databasePath(context: Any?): String {
-    val databaseDirectoryURL = NSURL(databaseDirectoryPath(nil))
-
-    return databaseDirectoryURL.URLByAppendingPathComponent("test.db")!!.path!!
+    return databaseDirectoryPath(nil) + "/test.db"
 }
