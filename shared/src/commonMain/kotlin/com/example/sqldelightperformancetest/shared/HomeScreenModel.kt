@@ -8,7 +8,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 import kotlinx.coroutines.launch
 
-class HomeScreenModel() : StateScreenModel<HomeScreenModel.State>(State.RunningTest(false)) {
+class HomeScreenModel : StateScreenModel<HomeScreenModel.State>(State.RunningTest(false)) {
 
     sealed class State {
         data class RunningTest(val isRunning: Boolean) : State()

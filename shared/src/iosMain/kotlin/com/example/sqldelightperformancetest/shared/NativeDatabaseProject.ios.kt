@@ -3,14 +3,12 @@ package com.example.sqldelightperformancetest.shared
 import TestDatabaseInterop.TDProject
 import TestDatabaseInterop.TDTestDatabaseBridge
 import comexampledb.Project
-import io.github.aakira.napier.Napier
 import kotlinx.cinterop.ExperimentalForeignApi
 import platform.Foundation.NSApplicationSupportDirectory
 import platform.Foundation.NSFileManager
 import platform.Foundation.NSURL
 import platform.Foundation.NSUserDomainMask
 import platform.Foundation.URLByAppendingPathComponent
-import platform.darwin.nil
 
 @OptIn(ExperimentalForeignApi::class)
 actual fun fetchNativeProjects(): ArrayList<Project> {
