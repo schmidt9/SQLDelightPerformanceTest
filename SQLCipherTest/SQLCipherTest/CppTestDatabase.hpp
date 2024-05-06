@@ -6,16 +6,14 @@
 
 extern "C" {
 
-JNIEXPORT void
-Java_com_example_sqldelightperformancetest_androidApp_CppTestDatabase_createProjects(
-        JNIEnv *,
-        jclass);
-
-JNIEXPORT jobject
-Java_com_example_sqldelightperformancetest_androidApp_CppTestDatabase_fetchProjects(
-        JNIEnv *,
-        jclass);
+JNIEXPORT void JNICALL
+Java_com_example_sqldelightperformancetest_shared_CppTestDatabase_createProjects(JNIEnv *env,
+                                                                                 jclass clazz, jstring databasePath, jint count);
+JNIEXPORT jobject JNICALL
+Java_com_example_sqldelightperformancetest_shared_CppTestDatabase_fetchProjects(JNIEnv *env,
+                                                                                jclass clazz, jstring databasePath);
 
 }
 
 #endif
+

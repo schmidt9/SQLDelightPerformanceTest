@@ -49,13 +49,13 @@ namespace test {
         
         void createTable();
         
-        void printError();
-        
     public:
         
-        void createProjects();
+        void createProjects(int count);
         
         std::vector<Project> fetchProjects();
+
+        std::string getLastError() const;
         
     private:
 

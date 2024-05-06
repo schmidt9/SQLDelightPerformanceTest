@@ -2,26 +2,24 @@ package com.example.db
 
 import comexampledb.Project
 
-class DatabaseTest(context: Any?) {
+class DatabaseTest() {
 
     private var database: TestDatabase
 
-    constructor() : this(null)
-
     init {
         val factory = DriverFactory()
-        val driver = factory.createDriver(context)
+        val driver = factory.createDriver()
 
         database = TestDatabase(driver)
     }
 
-    fun createProjects() {
+    fun createProjects(count: Int) {
         val queries = database.dataQueries
 
         queries.clearProjectsTable()
 
         database.transaction {
-            for (i in 0 until 100000) {
+            for (i in 0 until count) {
                 queries.createProject("Project $i")
             }
         }

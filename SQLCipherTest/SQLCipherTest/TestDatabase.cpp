@@ -14,10 +14,9 @@ namespace test {
         auto result = sqlite3_open_v2(databasePath.c_str(), &mDb, SQLITE_OPEN_READWRITE | SQLITE_OPEN_CREATE , NULL);
         
         if (result != SQLITE_OK) {
-            printError();
             return;
         }
-        
+
         createTable();
     }
     
@@ -30,7 +29,7 @@ namespace test {
         sqlite3_stmt *stmt = NULL;
         
         if (sqlite3_prepare_v2(mDb, query.c_str(), -1, &stmt, NULL) != SQLITE_OK) {
-            printError();
+            return stmt;
         }
         
         return stmt;
@@ -40,10 +39,9 @@ namespace test {
     TestDatabase::exec(const std::string &query)
     {
         if (sqlite3_exec(mDb, query.c_str(), NULL, NULL, NULL) != SQLITE_OK) {
-            printError();
             return false;
         }
-        
+
         return true;
     }
     
@@ -69,10 +67,18 @@ namespace test {
         sqlite3_finalize(stmt);
     }
     
-    void
-    TestDatabase::printError()
+    std::string
+    TestDatabase::getLastError() const
     {
-        printf("SQLite error: %s code %d\n", sqlite3_errmsg(mDb), sqlite3_errcode(mDb));
+        auto code = sqlite3_errcode(mDb);
+
+        if (code == SQLITE_OK || code == SQLITE_ROW || code == SQLITE_DONE) {
+            return "";
+        }
+
+        auto msg = std::string(sqlite3_errmsg(mDb));
+
+        return "SQLite error: " + msg + ", code " + std::to_string(code);
     }
     
     void
@@ -90,7 +96,7 @@ namespace test {
     }
     
     void
-    TestDatabase::createProjects()
+    TestDatabase::createProjects(int count)
     {
         clearProjectsTable();
         
@@ -108,7 +114,7 @@ namespace test {
         
         if (auto stmt = prepare(query)) {
             
-            for (int i = 0; i < 100000; ++i) {
+            for (int i = 0; i < count; ++i) {
                 auto projectName = "Project " + std::to_string(i);
                 sqlite3_bind_text(stmt, 1, projectName.c_str(), (int) projectName.size(), SQLITE_STATIC);
                 stepDone(stmt);
