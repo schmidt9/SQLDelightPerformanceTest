@@ -10,6 +10,9 @@ CREATE TABLE IF NOT EXISTS project (
 createProject:
 INSERT INTO project (name) VALUES (:projectName);
 
+createImageProject:
+INSERT INTO project (name, image) VALUES (:projectName, :image);
+
 fetchProjects:
 SELECT * FROM project;
 

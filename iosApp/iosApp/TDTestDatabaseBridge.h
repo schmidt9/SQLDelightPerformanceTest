@@ -17,12 +17,19 @@
 @property (nonatomic) NSInteger created;
 @property (nonatomic) NSInteger updateTime;
 @property (nonatomic) BOOL isActive;
+@property (nonatomic) NSData *imageData;
 
 @end
 
 @interface TDTestDatabaseBridge : NSObject
 
-+ (void)createProjectsWithDatabasePath:(NSString *)databasePath;
++ (void)createProjectsWithDatabasePath:(NSString *)databasePath 
+                                 count:(NSInteger)count;
+
++ (void)createProjectsWithDatabasePath:(NSString *)databasePath
+                                 count:(NSInteger)count
+                             imageData:(NSData *)imageData;
+
 + (NSArray<TDProject *> *)fetchProjectsWithDatabasePath:(NSString *)databasePath;
 
 @end

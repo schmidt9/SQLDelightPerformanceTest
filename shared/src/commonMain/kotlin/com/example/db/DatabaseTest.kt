@@ -25,6 +25,18 @@ class DatabaseTest() {
         }
     }
 
+    fun createImageProjects(count: Int, image: ByteArray) {
+        val queries = database.dataQueries
+
+        queries.clearProjectsTable()
+
+        database.transaction {
+            for (i in 0 until count) {
+                queries.createImageProject("Project $i", image)
+            }
+        }
+    }
+
     fun fetchProjects(): List<Project> =
         database.dataQueries.fetchProjects().executeAsList()
 

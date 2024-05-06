@@ -22,6 +22,7 @@ namespace test {
         int64_t created;
         int64_t updateTime;
         bool isActive;
+        std::vector<char> image;
         
     };
     
@@ -52,7 +53,9 @@ namespace test {
     public:
         
         void createProjects(int count);
-        
+
+        void createImageProjects(int count, std::vector<signed char> &imageData);
+
         std::vector<Project> fetchProjects();
 
         std::string getLastError() const;

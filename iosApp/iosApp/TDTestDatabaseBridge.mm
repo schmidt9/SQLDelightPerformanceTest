@@ -7,6 +7,7 @@
 
 #import "TDTestDatabaseBridge.h"
 #import "TestDatabase.hpp"
+#import <vector>
 
 @implementation TDProject
 @end
@@ -14,9 +15,20 @@
 
 @implementation TDTestDatabaseBridge
 
-+ (void)createProjectsWithDatabasePath:(NSString *)databasePath
++ (void)createProjectsWithDatabasePath:(NSString *)databasePath count:(NSInteger)count
 {
-    test::TestDatabase([databasePath UTF8String]).createProjects(100000);
+    test::TestDatabase([databasePath UTF8String]).createProjects((int) count);
+}
+
++ (void)createProjectsWithDatabasePath:(NSString *)databasePath
+                                 count:(NSInteger)count
+                             imageData:(NSData *)imageData
+{
+    auto buffer = static_cast<char *>(const_cast<void *>(imageData.bytes));
+    auto bufferLength = imageData.length;
+    auto _imageData = std::vector<signed char>(buffer, buffer + bufferLength);
+    
+    test::TestDatabase([databasePath UTF8String]).createImageProjects((int) count, _imageData);
 }
 
 + (NSArray<TDProject *> *)fetchProjectsWithDatabasePath:(NSString *)databasePath
@@ -31,6 +43,8 @@
         project.created = proj.created;
         project.updateTime = proj.updateTime;
         project.isActive = proj.isActive;
+        project.imageData = [NSData dataWithBytesNoCopy:proj.image.data() length:proj.image.size()];
+        
         [result addObject:project];
     }
 

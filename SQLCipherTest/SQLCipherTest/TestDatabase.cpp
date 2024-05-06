@@ -130,6 +130,43 @@ namespace test {
         query = "COMMIT";
         exec(query);
     }
+
+    void
+    TestDatabase::createImageProjects(int count, std::vector<signed char> &imageData)
+    {
+        clearProjectsTable();
+
+        // begin transaction
+
+        std::string query = "BEGIN TRANSACTION";
+
+        if (!exec(query)) {
+            return;
+        }
+
+        // insert
+
+        query = "INSERT INTO project (name, image) VALUES (?, ?)";
+
+        if (auto stmt = prepare(query)) {
+
+            for (int i = 0; i < count; ++i) {
+                auto projectName = "Project " + std::to_string(i);
+                sqlite3_bind_text(stmt, 1, projectName.c_str(), (int) projectName.size(), SQLITE_STATIC);
+                sqlite3_bind_blob(stmt, 2, imageData.data(), imageData.size(), SQLITE_STATIC);
+                stepDone(stmt);
+            }
+
+            finalize(stmt);
+        } else {
+            return;
+        }
+
+        // commit
+
+        query = "COMMIT";
+        exec(query);
+    }
     
     std::vector<Project>
     TestDatabase::fetchProjects()
@@ -145,9 +182,14 @@ namespace test {
                 project.created = sqlite3_column_int64(stmt, 2);
                 project.updateTime = sqlite3_column_int64(stmt, 3);
                 project.isActive = (sqlite3_column_int(stmt, 4) > 0);
+
+                auto buffer = static_cast<char *>(const_cast<void *>(sqlite3_column_blob(stmt, 5)));
+                auto bufferSize= sqlite3_column_bytes(stmt, 5);
+                project.image = std::vector<char>(buffer, buffer + bufferSize);
+
                 result.push_back(project);
             }
-            
+
             finalize(stmt);
         }
         
