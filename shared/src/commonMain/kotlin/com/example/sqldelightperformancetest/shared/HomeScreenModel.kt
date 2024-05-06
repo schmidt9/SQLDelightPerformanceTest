@@ -7,6 +7,7 @@ import io.github.aakira.napier.Napier
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 import kotlinx.coroutines.launch
+import kotlin.math.log
 
 class HomeScreenModel : StateScreenModel<HomeScreenModel.State>(State.RunningTest(false)) {
 
@@ -15,16 +16,37 @@ class HomeScreenModel : StateScreenModel<HomeScreenModel.State>(State.RunningTes
         data class Result(val logString: String) : State()
     }
 
-    fun runRecordsTest() {
+    enum class TestMode {
+        SQLDELIGHT,
+        SQLITE3,
+        ALL
+    }
+
+    private val projectsCount = 100_000
+
+    fun runTests(mode: TestMode) {
         screenModelScope.launch(Dispatchers.IO) {
+            val builder = StringBuilder()
+            builder.append(if (isDebug) "\nRunning Debug" else "\nRunning Release").append("\n\n")
+            builder.append("Test projects count: $projectsCount\n\n")
+
             mutableState.value = State.RunningTest(isRunning = true)
-            val logString = fetchTestResults()
-            mutableState.value = State.Result(logString)
+
+            val logString: String = when (mode) {
+                TestMode.SQLDELIGHT -> runSqlDelightTest()
+                TestMode.SQLITE3 -> runSqlite3Test()
+                TestMode.ALL -> runSqlDelightTest() + runSqlite3Test()
+            }
+
+            builder.append(logString)
+
+            Napier.d("$builder")
+
+            mutableState.value = State.Result(builder.toString())
         }
     }
 
-    private fun fetchTestResults(): String {
-        val projectsCount = 100_000
+    private fun runSqlDelightTest(): String {
         val databaseTest = DatabaseTest()
         val builder = StringBuilder()
 
@@ -36,6 +58,15 @@ class HomeScreenModel : StateScreenModel<HomeScreenModel.State>(State.RunningTes
             databaseTest.fetchProjects()
         }
 
+        builder.append("SQLDelight create projects: ${sqlDelightCreateProjectsTime / 1000.0}\n")
+        builder.append("SQLDelight fetch projects: ${sqlDelightFetchProjectsTime / 1000.0}\n\n")
+
+        return builder.toString()
+    }
+
+    private fun runSqlite3Test(): String {
+        val builder = StringBuilder()
+
         val sqlite3CreateProjectsTime = measureTimeMillis {
             createNativeProjects(projectsCount)
         }
@@ -44,17 +75,8 @@ class HomeScreenModel : StateScreenModel<HomeScreenModel.State>(State.RunningTes
             fetchNativeProjects()
         }
 
-        builder.append(if (isDebug) "\nRunning Debug" else "\nRunning Release").append("\n\n")
-
-        builder.append("Test projects count: $projectsCount\n\n")
-
-        builder.append("SQLDelight create projects: ${sqlDelightCreateProjectsTime / 1000.0}\n")
-        builder.append("SQLDelight fetch projects: ${sqlDelightFetchProjectsTime / 1000.0}\n\n")
-
         builder.append("sqlite3 (SQLCipher) create projects: ${sqlite3CreateProjectsTime / 1000.0}\n")
         builder.append("sqlite3 (SQLCipher) fetch projects: ${sqlite3FetchProjectsTime / 1000.0}")
-
-        Napier.d("$builder")
 
         return builder.toString()
     }

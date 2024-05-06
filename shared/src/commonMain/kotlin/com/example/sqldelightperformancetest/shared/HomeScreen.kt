@@ -40,11 +40,26 @@ class HomeScreen : Screen {
                         logString = state.logString
                     }
                 }
+
                 Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
+                    Text("Run tests:")
+
                     Button(onClick = {
-                        screenModel.runRecordsTest()
+                        screenModel.runTests(mode = HomeScreenModel.TestMode.SQLDELIGHT)
                     }, enabled = !isRunningTest) {
-                        Text("Run records test")
+                        Text("SQLDelight")
+                    }
+
+                    Button(onClick = {
+                        screenModel.runTests(mode = HomeScreenModel.TestMode.SQLITE3)
+                    }, enabled = !isRunningTest) {
+                        Text("sqlite3 (SQLCipher)")
+                    }
+
+                    Button(onClick = {
+                        screenModel.runTests(mode = HomeScreenModel.TestMode.ALL)
+                    }, enabled = !isRunningTest) {
+                        Text("SQLDelight + sqlite3 (SQLCipher)")
                     }
 
                     if (logString.isNotBlank()) {
@@ -60,7 +75,6 @@ class HomeScreen : Screen {
                             Text("Running test")
                         }
                     }
-
                 }
             }
         }
