@@ -36,11 +36,19 @@ fetchProjects(JNIEnv *env, jstring databasePath)
     auto database = TestDatabase(_databasePath);
 
     // https://medium.com/@TSG/how-to-obtain-an-arraylist-with-self-defined-java-kotlin-data-class-from-native-c-processing-8ee94ee86c25
-
-    // create ArrayList
     auto arrayListClass = env->FindClass("java/util/ArrayList");
     auto arrayListConstructor = env->GetMethodID(arrayListClass, "<init>", "()V");
     auto arrayListObject = env->NewObject(arrayListClass, arrayListConstructor);
+    auto arrayListAddMethod = env->GetMethodID(arrayListClass, "add", "(Ljava/lang/Object;)Z");
+
+    auto longClass = env->FindClass("java/lang/Long");
+    auto valueOfMethodId = env->GetStaticMethodID(longClass, "valueOf", "(J)Ljava/lang/Long;");
+
+    auto databaseProjectClass = env->FindClass("comexampledb/Project");
+    auto databaseProjectConstructor = env->GetMethodID(
+        databaseProjectClass,
+        "<init>",
+        "(JLjava/lang/String;Ljava/lang/Long;Ljava/lang/Long;Ljava/lang/Long;)V");
 
     auto projects = database.fetchProjects();
 
@@ -48,21 +56,13 @@ fetchProjects(JNIEnv *env, jstring databasePath)
         auto projectId = (jlong) project.id;
         auto name = env->NewStringUTF(project.name.c_str());
 
-        auto longClass = env->FindClass("java/lang/Long");
-        auto valueOfMethodId = env->GetStaticMethodID(longClass, "valueOf", "(J)Ljava/lang/Long;");
         auto created = env->CallStaticObjectMethod(longClass, valueOfMethodId, (jlong) project.created);
         auto updateTime = env->CallStaticObjectMethod(longClass, valueOfMethodId, (jlong) project.updateTime);
         auto isActive = env->CallStaticObjectMethod(longClass, valueOfMethodId, (jlong) project.isActive);
 
-        auto cls = env->FindClass("comexampledb/Project");
-        auto databaseProjectConstructor = env->GetMethodID(
-            cls,
-            "<init>",
-            "(JLjava/lang/String;Ljava/lang/Long;Ljava/lang/Long;Ljava/lang/Long;)V");
-
         // create DatabaseProject object
         auto databaseProjectObject = env->NewObject(
-            cls,
+            databaseProjectClass,
             databaseProjectConstructor,
             projectId,
             name,
@@ -71,19 +71,18 @@ fetchProjects(JNIEnv *env, jstring databasePath)
             isActive);
 
         // add object to array
-        auto arrayListAddMethod = env->GetMethodID(arrayListClass, "add", "(Ljava/lang/Object;)Z");
         env->CallBooleanMethod(arrayListObject, arrayListAddMethod, databaseProjectObject);
 
         // cleanup
         env->DeleteLocalRef(name);
-        env->DeleteLocalRef(longClass);
         env->DeleteLocalRef(created);
         env->DeleteLocalRef(updateTime);
         env->DeleteLocalRef(isActive);
-        env->DeleteLocalRef(cls);
         env->DeleteLocalRef(databaseProjectObject);
     }
 
+    env->DeleteLocalRef(longClass);
+    env->DeleteLocalRef(databaseProjectClass);
 
     return arrayListObject;
 }
