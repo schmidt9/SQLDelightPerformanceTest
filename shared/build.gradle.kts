@@ -63,6 +63,7 @@ kotlin {
                 implementation(libs.androidx.activity.compose)
                 implementation(libs.junit.v413)
                 implementation(libs.android.driver)
+                implementation(libs.androidx.startup.runtime)
             }
         }
         val androidUnitTest by getting {

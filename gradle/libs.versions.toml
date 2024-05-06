@@ -22,6 +22,7 @@ kotlinGradlePlugin = "1.6.21"
 material = "1.2.1"
 oshiCore = "6.5.0"
 runtime = "2.0.2"
+startupRuntime = "1.1.1"
 voyagerVersion = "1.0.0"
 napier = "2.6.1"
 
@@ -29,6 +30,7 @@ napier = "2.6.1"
 android-driver = { module = "app.cash.sqldelight:android-driver", version.ref = "runtime" }
 androidx-appcompat-v120 = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
 androidx-constraintlayout-v202 = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
+androidx-startup-runtime = { module = "androidx.startup:startup-runtime", version.ref = "startupRuntime" }
 gradle = { module = "com.android.tools.build:gradle", version.ref = "gradle" }
 junit-v413 = { module = "junit:junit", version.ref = "junitVersion" }
 kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlinGradlePlugin" }

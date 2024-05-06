@@ -2,9 +2,9 @@ package com.example.sqldelightperformancetest.shared
 
 import comexampledb.Project
 
-expect fun databaseDirectoryPath(context: Any?): String
-expect fun databasePath(context: Any?): String
+expect fun databaseDirectoryPath(): String
+expect fun databasePath(): String
 
-expect fun createNativeProjects(context: Any?, count: Int)
+expect fun createNativeProjects(count: Int)
 
-expect fun fetchNativeProjects(context: Any?) : ArrayList<Project>
+expect fun fetchNativeProjects() : ArrayList<Project>

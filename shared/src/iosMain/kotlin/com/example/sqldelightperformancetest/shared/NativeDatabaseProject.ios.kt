@@ -13,8 +13,8 @@ import platform.Foundation.URLByAppendingPathComponent
 import platform.darwin.nil
 
 @OptIn(ExperimentalForeignApi::class)
-actual fun fetchNativeProjects(context: Any?): ArrayList<Project> {
-    val databasePath = databasePath(nil)
+actual fun fetchNativeProjects(): ArrayList<Project> {
+    val databasePath = databasePath()
 
     val objcProjects = TDTestDatabaseBridge.fetchProjectsWithDatabasePath(databasePath)
     val projects = objcProjects!!.map {
@@ -33,12 +33,12 @@ actual fun fetchNativeProjects(context: Any?): ArrayList<Project> {
 }
 
 @OptIn(ExperimentalForeignApi::class)
-actual fun createNativeProjects(context: Any?, count: Int) {
-    val databasePath = databasePath(nil)
+actual fun createNativeProjects(count: Int) {
+    val databasePath = databasePath()
     TDTestDatabaseBridge.createProjectsWithDatabasePath(databasePath)
 }
 
-actual fun databaseDirectoryPath(context: Any?): String {
+actual fun databaseDirectoryPath(): String {
     val fileManager = NSFileManager.defaultManager
     val userDirectoryUrl = fileManager.URLsForDirectory(NSApplicationSupportDirectory, NSUserDomainMask).first() as NSURL
 
@@ -46,6 +46,6 @@ actual fun databaseDirectoryPath(context: Any?): String {
 }
 
 @OptIn(ExperimentalForeignApi::class)
-actual fun databasePath(context: Any?): String {
-    return databaseDirectoryPath(nil) + "/test.db"
+actual fun databasePath(): String {
+    return databaseDirectoryPath() + "/test.db"
 }
