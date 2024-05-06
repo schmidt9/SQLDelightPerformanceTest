@@ -21,11 +21,11 @@ import cafe.adriel.voyager.core.screen.Screen
 import io.github.aakira.napier.Napier
 import kotlin.math.log
 
-class HomeScreen(val context: Any? = null) : Screen {
+class HomeScreen() : Screen {
 
     @Composable
     override fun Content() {
-        val screenModel = rememberScreenModel { HomeScreenModel(context) }
+        val screenModel = rememberScreenModel { HomeScreenModel() }
         val screenModelState by screenModel.state.collectAsState()
         var isRunningTest by remember { mutableStateOf(false) }
         var logString by remember { mutableStateOf("") }

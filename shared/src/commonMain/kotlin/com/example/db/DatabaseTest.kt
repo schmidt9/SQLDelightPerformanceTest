@@ -2,15 +2,13 @@ package com.example.db
 
 import comexampledb.Project
 
-class DatabaseTest(context: Any?) {
+class DatabaseTest() {
 
     private var database: TestDatabase
 
-    constructor() : this(null)
-
     init {
         val factory = DriverFactory()
-        val driver = factory.createDriver(context)
+        val driver = factory.createDriver()
 
         database = TestDatabase(driver)
     }

@@ -8,7 +8,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 import kotlinx.coroutines.launch
 
-class HomeScreenModel(val context: Any? = null) : StateScreenModel<HomeScreenModel.State>(State.RunningTest(false)) {
+class HomeScreenModel() : StateScreenModel<HomeScreenModel.State>(State.RunningTest(false)) {
 
     sealed class State {
         data class RunningTest(val isRunning: Boolean) : State()
@@ -25,7 +25,7 @@ class HomeScreenModel(val context: Any? = null) : StateScreenModel<HomeScreenMod
 
     private fun fetchTestResults(): String {
         val projectsCount = 100_000
-        val databaseTest = DatabaseTest(context)
+        val databaseTest = DatabaseTest()
         val builder = StringBuilder()
 
         val sqlDelightCreateProjectsTime = measureTimeMillis {

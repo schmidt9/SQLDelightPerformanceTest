@@ -9,11 +9,11 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 @Preview
-fun App(context: Any? = null) {
+fun App() {
     Napier.base(DebugAntilog())
 
     MaterialTheme {
-        Navigator(screen = HomeScreen(context)) { navigator ->
+        Navigator(screen = HomeScreen()) { navigator ->
             SlideTransition(navigator)
         }
     }
