@@ -4,14 +4,14 @@ CREATE TABLE IF NOT EXISTS project (
 `created` INTEGER DEFAULT (strftime('%s','now')),
 `update_time` INTEGER DEFAULT (strftime('%s','now')),
 `is_active` INTEGER DEFAULT 0,
-`image` BLOB
+`image` BLOB DEFAULT NULL
 );
 
 createProject:
-INSERT INTO project (name) VALUES (:projectName);
+INSERT INTO project (name) VALUES (?);
 
 createImageProject:
-INSERT INTO project (name, image) VALUES (:projectName, :image);
+INSERT INTO project (name, image) VALUES (?, ?);
 
 fetchProjects:
 SELECT * FROM project;

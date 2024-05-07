@@ -37,7 +37,12 @@ class DatabaseTest() {
         }
     }
 
-    fun fetchProjects(): List<Project> =
-        database.dataQueries.fetchProjects().executeAsList()
+    fun fetchProjects(): List<Project> {
+        val queries = database.dataQueries
+        val query = queries.fetchProjects()
+        val projectsList = query.executeAsList()
+
+        return projectsList
+    }
 
 }
