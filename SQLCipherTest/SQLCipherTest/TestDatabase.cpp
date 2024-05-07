@@ -84,7 +84,14 @@ namespace test {
     void
     TestDatabase::createTable()
     {
-        std::string query = "CREATE TABLE IF NOT EXISTS project (`_id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,`name` TEXT,`created` INTEGER DEFAULT (strftime('%s','now')),`update_time` INTEGER DEFAULT (strftime('%s','now')),`is_active` INTEGER DEFAULT 0)";
+        std::string query = "CREATE TABLE IF NOT EXISTS project ("
+                            "`_id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,"
+                            "`name` TEXT,"
+                            "`created` INTEGER DEFAULT (strftime('%s','now')),"
+                            "`update_time` INTEGER DEFAULT (strftime('%s','now')),"
+                            "`is_active` INTEGER DEFAULT 0,"
+                            "`image` BLOB DEFAULT NULL"
+                            ")";
         exec(query);
     }
     
