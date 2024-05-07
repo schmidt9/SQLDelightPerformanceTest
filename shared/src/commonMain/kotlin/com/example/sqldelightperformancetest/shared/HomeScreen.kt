@@ -66,7 +66,8 @@ class HomeScreen : Screen {
                             screenModel.runTests(mode = HomeScreenModel.TestMode.SQLDELIGHT)
                         }
                     }, enabled = !isRunningTest) {
-                        Text("SQLDelight")
+                        val text = if (isImageTest) "SQLDelight (not working due to full CursorWindow!)" else "SQLDelight"
+                        Text(text)
                     }
 
                     Button(onClick = {
@@ -86,7 +87,8 @@ class HomeScreen : Screen {
                             screenModel.runTests(mode = HomeScreenModel.TestMode.ALL)
                         }
                     }, enabled = !isRunningTest) {
-                        Text("SQLDelight + sqlite3 (SQLCipher)")
+                        val text = if (isImageTest) "SQLDelight (not working due to full CursorWindow!) + sqlite3 (SQLCipher)" else "SQLDelight + sqlite3 (SQLCipher)"
+                        Text(text)
                     }
 
                     if (logString.isNotBlank()) {
