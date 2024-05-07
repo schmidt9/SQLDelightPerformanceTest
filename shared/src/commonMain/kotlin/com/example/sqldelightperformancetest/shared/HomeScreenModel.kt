@@ -39,6 +39,7 @@ class HomeScreenModel : StateScreenModel<HomeScreenModel.State>(State.RunningTes
         screenModelScope.launch(Dispatchers.IO) {
             val builder = StringBuilder()
             builder.append(if (isDebug) "\nRunning Debug" else "\nRunning Release").append("\n\n")
+            builder.append("Type: simple text projects\n\n")
             builder.append("Test projects count: $projectsCount\n\n")
 
             mutableState.value = State.RunningTest(isRunning = true)
@@ -103,6 +104,7 @@ class HomeScreenModel : StateScreenModel<HomeScreenModel.State>(State.RunningTes
         screenModelScope.launch(Dispatchers.IO) {
             val builder = StringBuilder()
             builder.append(if (isDebug) "\nRunning Debug" else "\nRunning Release").append("\n\n")
+            builder.append("Type: image projects\n\n")
             builder.append("Test projects count: $projectsCount\n\n")
 
             mutableState.value = State.RunningTest(isRunning = true)
