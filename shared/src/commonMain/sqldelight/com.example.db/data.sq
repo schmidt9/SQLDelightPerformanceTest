@@ -13,8 +13,14 @@ INSERT INTO project (name) VALUES (?);
 createImageProject:
 INSERT INTO project (name, image) VALUES (?, ?);
 
+fetchProject:
+SELECT * FROM project WHERE _id = :_id LIMIT 1;
+
 fetchProjects:
 SELECT * FROM project;
+
+fetchProjectIdentifiers:
+SELECT _id FROM project;
 
 clearProjectsTable:
 DELETE FROM project;

@@ -39,10 +39,17 @@ class DatabaseTest() {
 
     fun fetchProjects(): List<Project> {
         val queries = database.dataQueries
-        val query = queries.fetchProjects()
-        val projectsList = query.executeAsList()
+        val identifiersQuery = queries.fetchProjectIdentifiers()
+        val identifiersList = identifiersQuery.executeAsList()
 
-        return projectsList
+        val projects = identifiersList.map {
+            val projectQuery = queries.fetchProject(it)
+            val project = projectQuery.executeAsOne() // FIXME: crash
+
+            return@map project
+        }
+
+        return projects
     }
 
 }
