@@ -44,7 +44,11 @@ class DatabaseTest() {
 
         val projects = identifiersList.map {
             val projectQuery = queries.fetchProject(it)
-            val project = projectQuery.executeAsOne() // FIXME: crash
+            // FIXME: fix crash NullPointerException due to too big image size (~3.4mb)
+            // Window is full: requested allocation 3427723 bytes, free space 2096650 bytes, window size 2097152 bytes
+            // https://stackoverflow.com/questions/20094421/cursor-window-window-is-full
+            // try https://github.com/andpor/react-native-sqlite-storage/issues/364#issuecomment-526423153
+            val project = projectQuery.executeAsOne()
 
             return@map project
         }
