@@ -33,6 +33,8 @@ class HomeScreenModel : StateScreenModel<HomeScreenModel.State>(State.RunningTes
 
     // region Simple text test
 
+    // TODO: add encryption to tests like in https://github.com/softartdev/NoteDelight
+
     fun runTests(mode: TestMode) {
         val projectsCount = 100_000
 
