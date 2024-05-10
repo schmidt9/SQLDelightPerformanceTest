@@ -3,12 +3,10 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CE40EAC826174D5D00D3359E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE40EAC726174D5D00D3359E /* AppDelegate.swift */; };
-		CE40EACC26174D5D00D3359E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE40EACB26174D5D00D3359E /* ViewController.swift */; };
 		CE40EACF26174D5D00D3359E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE40EACD26174D5D00D3359E /* Main.storyboard */; };
 		CE40EAD126174D5E00D3359E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE40EAD026174D5E00D3359E /* Assets.xcassets */; };
 		CE40EAD426174D5E00D3359E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE40EAD226174D5E00D3359E /* LaunchScreen.storyboard */; };
@@ -37,8 +35,6 @@
 /* Begin PBXFileReference section */
 		9BFD9A0FDF4A41F246B8B829 /* Pods-iosApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.debug.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.debug.xcconfig"; sourceTree = "<group>"; };
 		CE40EAC426174D5D00D3359E /* iosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		CE40EAC726174D5D00D3359E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		CE40EACB26174D5D00D3359E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		CE40EACE26174D5D00D3359E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CE40EAD026174D5E00D3359E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE40EAD326174D5E00D3359E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -96,7 +92,6 @@
 		CE40EAC626174D5D00D3359E /* iosApp */ = {
 			isa = PBXGroup;
 			children = (
-				CE40EAC726174D5D00D3359E /* AppDelegate.swift */,
 				CE40EAD026174D5E00D3359E /* Assets.xcassets */,
 				CE40EAD526174D5E00D3359E /* Info.plist */,
 				CEC6B3A926184E1800E392EB /* iosApp-Bridging-Header.h */,
@@ -106,7 +101,6 @@
 				CE40EACD26174D5D00D3359E /* Main.storyboard */,
 				CEC6B3AD26184E4300E392EB /* TDTestDatabaseBridge.h */,
 				CEC6B3AA26184E1800E392EB /* TDTestDatabaseBridge.mm */,
-				CE40EACB26174D5D00D3359E /* ViewController.swift */,
 			);
 			path = iosApp;
 			sourceTree = "<group>";
@@ -255,10 +249,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEC6B3AB26184E1800E392EB /* TDTestDatabaseBridge.mm in Sources */,
-				CE40EACC26174D5D00D3359E /* ViewController.swift in Sources */,
 				CEE745302BDC178F0042A4CC /* ContentView.swift in Sources */,
 				CEE745322BDC17E10042A4CC /* iOSApp.swift in Sources */,
-				CE40EAC826174D5D00D3359E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
