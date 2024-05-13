@@ -3,6 +3,7 @@ package com.example.sqldelightperformancetest.shared
 import cafe.adriel.voyager.core.model.StateScreenModel
 import cafe.adriel.voyager.core.model.screenModelScope
 import com.example.db.DatabaseTest
+import comexampledb.Project
 import io.github.aakira.napier.Napier
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
@@ -135,8 +136,20 @@ class HomeScreenModel : StateScreenModel<HomeScreenModel.State>(State.RunningTes
             databaseTest.createImageProjects(projectsCount, imageData)
         }
 
+        var projects = listOf<Project>()
+
         val sqlDelightFetchProjectsTime = measureTimeMillis {
-            databaseTest.fetchProjects()
+            projects = databaseTest.fetchProjects()
+        }
+
+        projects.forEach {
+            it.image?.let { image ->
+                val equal = it.image.size == imageData.size
+
+                if (equal.not()) {
+                    throw Exception("Image size not valid ${it.image.size} != ${imageData.size}")
+                }
+            }
         }
 
         builder.append("SQLDelight create projects: ${sqlDelightCreateProjectsTime / 1000.0}\n")
