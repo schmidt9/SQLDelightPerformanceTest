@@ -55,7 +55,7 @@ class DatabaseTest() {
             val length = imageLength.length
 
             val image = if (length != null && length > 0) {
-                val windowSize = (1024 * 1024 * 0.5).toInt()
+                val windowSize = (1024 * 1024 * 1.5).toInt()
                 val windowParts = length.toInt() / windowSize
                 var from = 0
                 var to = windowSize
