@@ -16,17 +16,6 @@ INSERT INTO project (name, image) VALUES (?, ?);
 fetchProject:
 SELECT * FROM project WHERE _id = :_id LIMIT 1;
 
-fetchProjectWithoutImage:
-SELECT _id,name,created,update_time,is_active FROM project WHERE _id = :_id LIMIT 1;
-
-fetchProjectImageLength:
-SELECT length(image) FROM project WHERE _id = :_id LIMIT 1;
-
-fetchPartProjectImage:
-SELECT CAST(substr(hex(image),CAST(:_from AS INTEGER),CAST(:_to AS INTEGER)) AS BLOB)
-FROM project
-WHERE _id = :id LIMIT 1;
-
 fetchProjects:
 SELECT * FROM project;
 
