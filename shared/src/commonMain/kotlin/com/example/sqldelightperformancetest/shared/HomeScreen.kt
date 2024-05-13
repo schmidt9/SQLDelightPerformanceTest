@@ -66,7 +66,7 @@ class HomeScreen : Screen {
                             screenModel.runTests(mode = HomeScreenModel.TestMode.SQLDELIGHT)
                         }
                     }, enabled = !isRunningTest) {
-                        val text = if (isImageTest) "SQLDelight (not working on Android < 9 due to full CursorWindow!)" else "SQLDelight"
+                        val text = "SQLDelight"
                         Text(text)
                     }
 
@@ -87,7 +87,7 @@ class HomeScreen : Screen {
                             screenModel.runTests(mode = HomeScreenModel.TestMode.ALL)
                         }
                     }, enabled = !isRunningTest) {
-                        val text = if (isImageTest) "SQLDelight (not working on Android < 9 due to full CursorWindow!) + sqlite3 (SQLCipher)" else "SQLDelight + sqlite3 (SQLCipher)"
+                        val text = "SQLDelight + sqlite3 (SQLCipher)"
                         Text(text)
                     }
 
