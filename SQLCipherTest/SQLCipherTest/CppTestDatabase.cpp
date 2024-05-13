@@ -25,16 +25,9 @@ convertVectorCharToJbyteArray(JNIEnv *env, std::vector<char> data)
         return nullptr;
     }
 
-    auto size = (jsize) length;
-    auto *tmp = (jbyte *) calloc(sizeof(jbyte), length);
-
-    for (int index = 0; index <= length; index++) {
-        tmp[index] = (jbyte ) data[index];
-    }
-
+    auto size = static_cast<jsize>(data.size());
     auto result = env->NewByteArray(size);
-
-    env->SetByteArrayRegion(result, 0, size, tmp);
+    env->SetByteArrayRegion(result, 0, size, reinterpret_cast<const jbyte*>(data.data()));
 
     return result;
 }
