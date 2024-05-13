@@ -55,7 +55,7 @@ class DatabaseTest() {
             val length = imageLength.length
 
             val image = if (length != null && length > 0) {
-                val windowSize = 1024 * 50  // 0.5mb
+                val windowSize = (1024 * 1024 * 0.5).toInt()
                 val windowParts = length.toInt() / windowSize
                 var from = 0
                 var to = windowSize
@@ -66,9 +66,8 @@ class DatabaseTest() {
                     val _to = to.toString()
                     val imagePartQuery = queries.fetchPartProjectImage(_from, _to, it)
                     val image = imagePartQuery.executeAsOne()
-                    val bytes = image.substr?.encodeToByteArray()
 
-                    result = bytes?.let { array -> result?.plus(array) } ?: bytes
+                    result = result?.plus(image) ?: image
 
                     from = to
                     to = if (index + 1 == windowParts) length.toInt() else to + windowSize

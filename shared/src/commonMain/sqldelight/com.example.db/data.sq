@@ -23,7 +23,9 @@ fetchProjectImageLength:
 SELECT length(image) FROM project WHERE _id = :_id LIMIT 1;
 
 fetchPartProjectImage:
-SELECT substr(CAST(image AS TEXT),CAST(:_from AS INTEGER),CAST(:_to AS INTEGER)) FROM project WHERE _id = :id LIMIT 1;
+SELECT CAST(substr(hex(image),CAST(:_from AS INTEGER),CAST(:_to AS INTEGER)) AS BLOB)
+FROM project
+WHERE _id = :id LIMIT 1;
 
 fetchProjects:
 SELECT * FROM project;
