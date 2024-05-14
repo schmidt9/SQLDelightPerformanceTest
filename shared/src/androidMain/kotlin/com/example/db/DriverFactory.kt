@@ -24,7 +24,6 @@ actual class DriverFactory actual constructor() {
             TestDatabase.Schema,
             appContext,
             "test.db",
-            cacheSize = 1,
             // fix CursorWindow (working since Android 9 API 28)
             // https://github.com/cashapp/sqldelight/pull/4804
             windowSizeBytes = windowSize.toLong())
